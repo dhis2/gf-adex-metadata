@@ -1,0 +1,3091 @@
+{
+    "attributes": [
+        {
+            "categoryAttribute": false,
+            "categoryOptionAttribute": false,
+            "code": "GF_COUNTRY-ID",
+            "dataElementAttribute": false,
+            "dataElementGroupAttribute": false,
+            "description": "Code used by the country DHIS 2 instances. Used for mapping of org units during data import.",
+            "id": "hpe7LiGDgvo",
+            "indicatorAttribute": false,
+            "indicatorGroupAttribute": false,
+            "mandatory": false,
+            "name": "GF_Country ID",
+            "shortName": "GF_Country ID",
+            "unique": true,
+            "valueType": "TEXT"
+        },
+        {
+            "categoryAttribute": false,
+            "categoryOptionAttribute": false,
+            "code": "GF_DE_ID",
+            "dataElementAttribute": false,
+            "dataElementGroupAttribute": false,
+            "description": "Global Fund ADEX Data element",
+            "id": "nHzX73VyNun",
+            "indicatorAttribute": true,
+            "indicatorGroupAttribute": false,
+            "mandatory": false,
+            "name": "GF_DataElementID",
+            "shortName": "GF_DataElementID",
+            "unique": false,
+            "valueType": "TEXT"
+        }
+    ],
+    "indicatorGroups": [
+        {
+            "code": "GF_GC7_MAL_MONTHLY",
+            "id": "sTpzo2eH09W",
+            "indicators": [
+                {
+                    "id": "nys792xRvHm"
+                },
+                {
+                    "id": "lJfG3gNCBdk"
+                },
+                {
+                    "id": "tQ1EdZrsWV9"
+                },
+                {
+                    "id": "bQewWLkBU43"
+                },
+                {
+                    "id": "mFV92JDHWuy"
+                },
+                {
+                    "id": "yhZs0dnK3NA"
+                },
+                {
+                    "id": "fCQqfzmaNG1"
+                },
+                {
+                    "id": "v1MU5tVfseC"
+                },
+                {
+                    "id": "tdTp5hnYmCg"
+                },
+                {
+                    "id": "ky9Be8C6wgK"
+                },
+                {
+                    "id": "uTRIOcjS3Hn"
+                },
+                {
+                    "id": "mJBYXji1GL0"
+                },
+                {
+                    "id": "dh94afv61LD"
+                },
+                {
+                    "id": "sn71HVfDLWl"
+                },
+                {
+                    "id": "u8joZu7is3B"
+                },
+                {
+                    "id": "vCVfDwJonI0"
+                },
+                {
+                    "id": "ygEOA5U0eSz"
+                },
+                {
+                    "id": "bLgicDW67Et"
+                },
+                {
+                    "id": "ofMxOmQrj9u"
+                },
+                {
+                    "id": "mx9YLB5bVrk"
+                },
+                {
+                    "id": "tU1KECWOspu"
+                },
+                {
+                    "id": "w7yprnSJh0v"
+                },
+                {
+                    "id": "ykEWafJy07o"
+                },
+                {
+                    "id": "u58MmZc9PHL"
+                },
+                {
+                    "id": "st5hy1C6awB"
+                },
+                {
+                    "id": "gwOmPkq308L"
+                },
+                {
+                    "id": "m9fURW8AKmh"
+                },
+                {
+                    "id": "eQuKfoLdCOA"
+                },
+                {
+                    "id": "yAQD30SLzvU"
+                },
+                {
+                    "id": "phlKDCAL1Ei"
+                },
+                {
+                    "id": "bW8ZNuIsovA"
+                },
+                {
+                    "id": "fobfd5H3wiv"
+                },
+                {
+                    "id": "nSIPDiJOC7y"
+                },
+                {
+                    "id": "djdK85qZUhM"
+                },
+                {
+                    "id": "fyMiTbHkFal"
+                },
+                {
+                    "id": "mpHCOJEdQPF"
+                },
+                {
+                    "id": "o1oZKOct2fq"
+                },
+                {
+                    "id": "gUzS5f4sDOu"
+                },
+                {
+                    "id": "bTsH6RUwYSg"
+                },
+                {
+                    "id": "qgQYwKVN01J"
+                },
+                {
+                    "id": "foXrqBWOQ75"
+                },
+                {
+                    "id": "cq6QYNiCzuL"
+                },
+                {
+                    "id": "gQEIDSwtOLW"
+                },
+                {
+                    "id": "slsG64Ufw2B"
+                },
+                {
+                    "id": "a3sPmncgZH0"
+                },
+                {
+                    "id": "pte4UGFuBnk"
+                },
+                {
+                    "id": "l2oewhXj0fP"
+                },
+                {
+                    "id": "pJiDghpE4Yv"
+                },
+                {
+                    "id": "hdcCWaDy5iG"
+                },
+                {
+                    "id": "ltmIEP1nGYV"
+                },
+                {
+                    "id": "zlOInWjDVKp"
+                },
+                {
+                    "id": "dL5BwtoMphG"
+                },
+                {
+                    "id": "m1g43NJpbVe"
+                },
+                {
+                    "id": "rje2pTwIRqr"
+                },
+                {
+                    "id": "ztOZy3VqTDj"
+                },
+                {
+                    "id": "iRSBcFOqGTJ"
+                },
+                {
+                    "id": "wanjB13WDNH"
+                },
+                {
+                    "id": "jTOCEeLD6RK"
+                },
+                {
+                    "id": "l1OymN3BAhX"
+                },
+                {
+                    "id": "uQ1DaudB2xl"
+                },
+                {
+                    "id": "fAE83XdMmqK"
+                }
+            ],
+            "name": "GF GC7 Malaria Monthly"
+        },
+        {
+            "code": "GF_GC7_MAL_QUARTERLY",
+            "id": "a0PYGCRkrB3",
+            "indicators": [
+                {
+                    "id": "neMuLhvAHt4"
+                },
+                {
+                    "id": "fk7rGzZCy2i"
+                },
+                {
+                    "id": "l1woI4c78Xv"
+                },
+                {
+                    "id": "fK853FQHV2E"
+                },
+                {
+                    "id": "ybBzLTFV93N"
+                },
+                {
+                    "id": "fNVnMu2Qa0y"
+                },
+                {
+                    "id": "isA4oXWnxr3"
+                },
+                {
+                    "id": "hHUNlwV7dae"
+                },
+                {
+                    "id": "z0KEuGSB9F4"
+                },
+                {
+                    "id": "jBTKt8kJPoa"
+                }
+            ],
+            "name": "GF GC7 Malaria Quarterly"
+        },
+        {
+            "code": "GF_GC7_MAL_YEARLY",
+            "id": "qtsbn3R7LNe",
+            "indicators": [
+                {
+                    "id": "a2SAJM3jlps"
+                },
+                {
+                    "id": "ponF3Y5VU1d"
+                },
+                {
+                    "id": "qvLQValgyP1"
+                },
+                {
+                    "id": "eE4rLQAnwUe"
+                },
+                {
+                    "id": "kXNE3RnQ65r"
+                },
+                {
+                    "id": "hEnMjtRw7DP"
+                },
+                {
+                    "id": "hhFLOqnKrCc"
+                },
+                {
+                    "id": "qYlHTXyNtsM"
+                },
+                {
+                    "id": "atQrU90J3eH"
+                },
+                {
+                    "id": "tXxVrZC78Wf"
+                },
+                {
+                    "id": "bAVCgnXfESp"
+                },
+                {
+                    "id": "iqtFguO5JsT"
+                }
+            ],
+            "name": "GF GC7 Malaria Yearly"
+        }
+    ],
+    "indicatorTypes": [
+        {
+            "code": "GEN_LIB_NUMBER_ONLY",
+            "factor": 1,
+            "id": "kHy61PbChXr",
+            "name": "Numerator only (number)",
+            "number": true
+        }
+    ],
+    "indicators": [
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "aaIgUMfPL9S"
+                }
+            ],
+            "code": "[GFADEX]_aaIgUMfPL9S_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "nys792xRvHm",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-10 [D]: Malaria cases treated and reported at national reporting system (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Malaria cases treated reported nat system (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-10 [D, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-10 [D]: Nombre total de cas de paludisme traités et signalés au système national de communication de l’information (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "pdcJX7tRWQ0"
+                }
+            ],
+            "code": "[GFADEX]_pdcJX7tRWQ0_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "lJfG3gNCBdk",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-10 [N]: Cases reported at national reporting system within 24 hours of treatment (elimination settings). (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Malaria cases reported w/in 24hrs (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-10 [N, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-10 [N]: Cas signalés au système national de communication de l’information dans les 24 heures ayant suivi l’instauration du traitement (contextes d’élimination) (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "nbioTZ04Ahm"
+                }
+            ],
+            "code": "[GFADEX]_nbioTZ04Ahm_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "mFV92JDHWuy",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1a [D]: All suspected malaria cases that present at public sector health facilities (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspected malaria present public sector (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1a [D, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1a [D]: Nombre total de cas présumés de paludisme se présentant dans des établissements de santé du secteur public (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "P22ShSceXku",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "lfUSTYw5DHh"
+                }
+            ],
+            "code": "[GFADEX]_lfUSTYw5DHh_P22ShSceXku",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "tQ1EdZrsWV9",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1a [D]: All suspected malaria cases that present at public sector health facilities by Age (<5)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspected malaria cases tests public sector by Age (<5)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1a [D, 5+)] (<5)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1a [D]: Nombre total de cas présumés de paludisme se présentant dans des établissements de santé du secteur public par Âge (<5)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "dErygNfLY68",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "lfUSTYw5DHh"
+                }
+            ],
+            "code": "[GFADEX]_lfUSTYw5DHh_dErygNfLY68",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "bQewWLkBU43",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1a [D]: All suspected malaria cases that present at public sector health facilities by Age (5+)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspected malaria cases tests public sector by Age (5+)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1a [D, 5+)] (5+)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1a [D]: Nombre total de cas présumés de paludisme se présentant dans des établissements de santé du secteur public par Âge (5+)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "u6NdXLM37eH"
+                }
+            ],
+            "code": "[GFADEX]_u6NdXLM37eH_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "ky9Be8C6wgK",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1a [N]: All suspected malaria cases that received a parasitological test at public sector health facilities (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspected malaria tested-public (Total)  (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1a [N, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1a [N]: Nombre total de cas présumés de paludisme soumis à un test parasitologique dans des établissements de santé du secteur public (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "P22ShSceXku",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "yltKT2gkR31"
+                }
+            ],
+            "code": "[GFADEX]_yltKT2gkR31_P22ShSceXku",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "yhZs0dnK3NA",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1a [N]: All suspected malaria cases that received a parasitological test at public sector health facilities by Age (<5)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspect malaria cases tested by Age (<5)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1a [N, 5+)] (<5)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1a [N]: Nombre total de cas présumés de paludisme soumis à un test parasitologique dans des établissements de santé du secteur public par Âge (<5)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "dErygNfLY68",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "yltKT2gkR31"
+                }
+            ],
+            "code": "[GFADEX]_yltKT2gkR31_dErygNfLY68",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "fCQqfzmaNG1",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1a [N]: All suspected malaria cases that received a parasitological test at public sector health facilities by Age (5+)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspect malaria cases tested by Age (5+)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1a [N, 5+)] (5+)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1a [N]: Nombre total de cas présumés de paludisme soumis à un test parasitologique dans des établissements de santé du secteur public par Âge (5+)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "SEMt7AbBEyf",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "uoblHFrLxZ6"
+                }
+            ],
+            "code": "[GFADEX]_uoblHFrLxZ6_SEMt7AbBEyf",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "v1MU5tVfseC",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1a [N]: All suspected malaria cases that received a parasitological test at public sector health facilities by malaria testing type (Microscopy)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspect malaria tests by testing type public (Microscopy)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1a [N, Testing type] (Microscopy)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1a [N]: Nombre total de cas présumés de paludisme soumis à un test parasitologique dans des établissements de santé du secteur public par Type de test du paludisme (Microscopie)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "Nm83QUPAHAD",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "uoblHFrLxZ6"
+                }
+            ],
+            "code": "[GFADEX]_uoblHFrLxZ6_Nm83QUPAHAD",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "tdTp5hnYmCg",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1a [N]: All suspected malaria cases that received a parasitological test at public sector health facilities by malaria testing type (Rapid diagnostic test)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspect malaria tests by testing type public (Rapid diagnostic test)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1a [N, Testing type] (Rapid diagnostic test)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1a [N]: Nombre total de cas présumés de paludisme soumis à un test parasitologique dans des établissements de santé du secteur public par Type de test du paludisme (Test de diagnostic rapide)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "yTBc9rWRyHa"
+                }
+            ],
+            "code": "[GFADEX]_yTBc9rWRyHa_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "uTRIOcjS3Hn",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1b [D]: All suspected malaria cases in the community (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspected community malaria cases (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1b [D, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1b [D]: Nombre total de cas présumés de paludisme dans la communauté (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "P22ShSceXku",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "uap5NXW2SLA"
+                }
+            ],
+            "code": "[GFADEX]_uap5NXW2SLA_P22ShSceXku",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "mJBYXji1GL0",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1b [D]: All suspected malaria cases in the community by Age (<5)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspected community malaria cases by Age (<5)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1b [D, 5+)] (<5)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1b [D]: Nombre total de cas présumés de paludisme dans la communauté par Âge (<5)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "dErygNfLY68",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "uap5NXW2SLA"
+                }
+            ],
+            "code": "[GFADEX]_uap5NXW2SLA_dErygNfLY68",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "dh94afv61LD",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1b [D]: All suspected malaria cases in the community by Age (5+)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspected community malaria cases by Age (5+)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1b [D, 5+)] (5+)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1b [D]: Nombre total de cas présumés de paludisme dans la communauté par Âge (5+)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "vg407K1jJUS"
+                }
+            ],
+            "code": "[GFADEX]_vg407K1jJUS_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "sn71HVfDLWl",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1b [N]: All suspected malaria cases that received a parasitological test in the community (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspect community malaria cases tested (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1b [N, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1b [N]: Nombre total de cas présumés de paludisme soumis à un test parasitologique dans la communauté (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "P22ShSceXku",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "f9HBiPK2Vse"
+                }
+            ],
+            "code": "[GFADEX]_f9HBiPK2Vse_P22ShSceXku",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "u8joZu7is3B",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1b [N]: All suspected malaria cases that received a parasitological test in the community by Age (<5)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspect community malaria cases tested by Age (<5)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1b [N, 5+)] (<5)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1b [N]: Nombre total de cas présumés de paludisme soumis à un test parasitologique dans la communauté par Âge (<5)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "dErygNfLY68",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "f9HBiPK2Vse"
+                }
+            ],
+            "code": "[GFADEX]_f9HBiPK2Vse_dErygNfLY68",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "vCVfDwJonI0",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1b [N]: All suspected malaria cases that received a parasitological test in the community by Age (5+)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspect community malaria cases tested by Age (5+)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1b [N, 5+)] (5+)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1b [N]: Nombre total de cas présumés de paludisme soumis à un test parasitologique dans la communauté par Âge (5+)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "SEMt7AbBEyf",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "wCwDO0mz75o"
+                }
+            ],
+            "code": "[GFADEX]_wCwDO0mz75o_SEMt7AbBEyf",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "ygEOA5U0eSz",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1b [N]: All suspected malaria cases that received a parasitological test in the community by malaria testing type (Microscopy)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspect community malaria cases tests by test type (Microscopy)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1b [N, Testing type] (Microscopy)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1b [N]: Nombre total de cas présumés de paludisme soumis à un test parasitologique dans la communauté par Type de test du paludisme (Microscopie)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "Nm83QUPAHAD",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "wCwDO0mz75o"
+                }
+            ],
+            "code": "[GFADEX]_wCwDO0mz75o_Nm83QUPAHAD",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "bLgicDW67Et",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1b [N]: All suspected malaria cases that received a parasitological test in the community by malaria testing type (Rapid diagnostic test)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspect community malaria cases tests by test type (Rapid diagnostic test)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1b [N, Testing type] (Rapid diagnostic test)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1b [N]: Nombre total de cas présumés de paludisme soumis à un test parasitologique dans la communauté par Type de test du paludisme (Test de diagnostic rapide)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "oOIQMvS4jFB"
+                }
+            ],
+            "code": "[GFADEX]_oOIQMvS4jFB_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "ofMxOmQrj9u",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1c [D]: All suspected malaria cases that present at private sector sites (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspected malaria cases-private sector (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1c [D, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1c [D]: Nombre total de personnes supposées atteintes de paludisme qui se présentent dans des structures du secteur privé (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "P22ShSceXku",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "ki48UlskgLS"
+                }
+            ],
+            "code": "[GFADEX]_ki48UlskgLS_P22ShSceXku",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "mx9YLB5bVrk",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1c [D]: All suspected malaria cases that present at private sector sites by Age (<5)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspected malaria cases-private sector by Age (<5)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1c [D, 5+)] (<5)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1c [D]: Nombre total de personnes supposées atteintes de paludisme qui se présentent dans des structures du secteur privé par Âge (<5)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "dErygNfLY68",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "ki48UlskgLS"
+                }
+            ],
+            "code": "[GFADEX]_ki48UlskgLS_dErygNfLY68",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "tU1KECWOspu",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1c [D]: All suspected malaria cases that present at private sector sites by Age (5+)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspected malaria cases-private sector by Age (5+)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1c [D, 5+)] (5+)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1c [D]: Nombre total de personnes supposées atteintes de paludisme qui se présentent dans des structures du secteur privé par Âge (5+)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "pZ9tihdAVxR"
+                }
+            ],
+            "code": "[GFADEX]_pZ9tihdAVxR_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "w7yprnSJh0v",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1c [N]: All suspected malaria cases that received a parasitological test at private sector sites (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspect malaria tests private sector (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1c [N, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1c [N]: Nombre total de cas présumés de paludisme soumis à un test parasitologique dans des structures du secteur privé (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "P22ShSceXku",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "tCRQYDbgSh1"
+                }
+            ],
+            "code": "[GFADEX]_tCRQYDbgSh1_P22ShSceXku",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "st5hy1C6awB",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1c [N]: All suspected malaria cases that received a parasitological test at private sector sites by Age (<5)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspect malaria tests private sector sites by Age (<5)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1c [N, 5+)] (<5)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1c [N]: Nombre total de cas présumés de paludisme soumis à un test parasitologique dans des structures du secteur privé par Âge (<5)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "dErygNfLY68",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "tCRQYDbgSh1"
+                }
+            ],
+            "code": "[GFADEX]_tCRQYDbgSh1_dErygNfLY68",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "gwOmPkq308L",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1c [N]: All suspected malaria cases that received a parasitological test at private sector sites by Age (5+)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspect malaria tests private sector sites by Age (5+)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1c [N, 5+)] (5+)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1c [N]: Nombre total de cas présumés de paludisme soumis à un test parasitologique dans des structures du secteur privé par Âge (5+)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "SEMt7AbBEyf",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "vQir9C1Bz75"
+                }
+            ],
+            "code": "[GFADEX]_vQir9C1Bz75_SEMt7AbBEyf",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "ykEWafJy07o",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1c [N]: All suspected malaria cases that received a parasitological test at private sector sites by malaria testing type (Microscopy)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspect malaria tests private sector by test type (Microscopy)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1c [N, Testing type] (Microscopy)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1c [N]: Nombre total de cas présumés de paludisme soumis à un test parasitologique dans des structures du secteur privé par Type de test du paludisme (Microscopie)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "Nm83QUPAHAD",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "vQir9C1Bz75"
+                }
+            ],
+            "code": "[GFADEX]_vQir9C1Bz75_Nm83QUPAHAD",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "u58MmZc9PHL",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-1c [N]: All suspected malaria cases that received a parasitological test at private sector sites by malaria testing type (Rapid diagnostic test)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Suspect malaria tests private sector by test type (Rapid diagnostic test)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-1c [N, Testing type] (Rapid diagnostic test)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-1c [N]: Nombre total de cas présumés de paludisme soumis à un test parasitologique dans des structures du secteur privé par Type de test du paludisme (Test de diagnostic rapide)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "rR5zJkWYxSs"
+                }
+            ],
+            "code": "[GFADEX]_rR5zJkWYxSs_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "m9fURW8AKmh",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2a [D]: Confirmed malaria cases at public health facilities (found by both passive and active surveillance) (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Confirmed malaria at public facilities (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2a [D, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2a [D]: Cas confirmés de paludisme dans les établissements de santé du secteur public (détectés à la fois par surveillance passive et active) (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "P22ShSceXku",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "jEB18tzanjX"
+                }
+            ],
+            "code": "[GFADEX]_jEB18tzanjX_P22ShSceXku",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "eQuKfoLdCOA",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2a [D]: Confirmed malaria cases at public health facilities (found by both passive and active surveillance) by Age (<5)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Confirmed malaria at public facilities by Age (<5)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2a [D, 5+)] (<5)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2a [D]: Cas confirmés de paludisme dans les établissements de santé du secteur public (détectés à la fois par surveillance passive et active) par Âge (<5)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "dErygNfLY68",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "jEB18tzanjX"
+                }
+            ],
+            "code": "[GFADEX]_jEB18tzanjX_dErygNfLY68",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "yAQD30SLzvU",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2a [D]: Confirmed malaria cases at public health facilities (found by both passive and active surveillance) by Age (5+)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Confirmed malaria at public facilities by Age (5+)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2a [D, 5+)] (5+)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2a [D]: Cas confirmés de paludisme dans les établissements de santé du secteur public (détectés à la fois par surveillance passive et active) par Âge (5+)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "qHQ6Gat8flv"
+                }
+            ],
+            "code": "[GFADEX]_qHQ6Gat8flv_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "phlKDCAL1Ei",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2a [N]: Confirmed malaria cases treated who received first-line antimalarial treatment according to national policy at public sector health facilities (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Confirmed malaria treated-public (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2a [N, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2a [N]: Cas confirmés de paludisme ayant reçu un traitement antipaludique de première intention conformément aux politiques nationales dans des établissements de santé du secteur public (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "P22ShSceXku",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "iQa8e60KcjP"
+                }
+            ],
+            "code": "[GFADEX]_iQa8e60KcjP_P22ShSceXku",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "bW8ZNuIsovA",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2a [N]: Confirmed malaria cases treated who received first-line antimalarial treatment according to national policy at public sector health facilities by Age (<5)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Malaria cases treated public by Age (<5)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2a [N, 5+)] (<5)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2a [N]: Cas confirmés de paludisme ayant reçu un traitement antipaludique de première intention conformément aux politiques nationales dans des établissements de santé du secteur public par Âge (<5)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "dErygNfLY68",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "iQa8e60KcjP"
+                }
+            ],
+            "code": "[GFADEX]_iQa8e60KcjP_dErygNfLY68",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "fobfd5H3wiv",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2a [N]: Confirmed malaria cases treated who received first-line antimalarial treatment according to national policy at public sector health facilities by Age (5+)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Malaria cases treated public by Age (5+)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2a [N, 5+)] (5+)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2a [N]: Cas confirmés de paludisme ayant reçu un traitement antipaludique de première intention conformément aux politiques nationales dans des établissements de santé du secteur public par Âge (5+)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "qpROW6v2t7g"
+                }
+            ],
+            "code": "[GFADEX]_qpROW6v2t7g_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "nSIPDiJOC7y",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2b [D]: Confirmed malaria cases in the community (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Conf. malaria cases in the community (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2b [D, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2b [D]: Cas de paludisme confirmés dans la communauté (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "P22ShSceXku",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "m1j3ImyYqW6"
+                }
+            ],
+            "code": "[GFADEX]_m1j3ImyYqW6_P22ShSceXku",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "djdK85qZUhM",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2b [D]: Confirmed malaria cases in the community by Age (<5)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] confirmed malaria cases in the community by Age (<5)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2b [D, 5+)] (<5)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2b [D]: Cas de paludisme confirmés dans la communauté par Âge (<5)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "dErygNfLY68",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "m1j3ImyYqW6"
+                }
+            ],
+            "code": "[GFADEX]_m1j3ImyYqW6_dErygNfLY68",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "fyMiTbHkFal",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2b [D]: Confirmed malaria cases in the community by Age (5+)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] confirmed malaria cases in the community by Age (5+)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2b [D, 5+)] (5+)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2b [D]: Cas de paludisme confirmés dans la communauté par Âge (5+)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "pRY4tVOivNI"
+                }
+            ],
+            "code": "[GFADEX]_pRY4tVOivNI_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "mpHCOJEdQPF",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2b [N]: Confirmed malaria cases treated that received first-line antimalarial treatment  in the community (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Conf. Malaria cases treated in community (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2b [N, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2b [N]: Cas de paludisme confirmés ayant reçu un traitement antipaludique de première intention dans la communauté (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "P22ShSceXku",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "egU15bdlWNI"
+                }
+            ],
+            "code": "[GFADEX]_egU15bdlWNI_P22ShSceXku",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "o1oZKOct2fq",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2b [N]: Confirmed malaria cases treated that received first-line antimalarial treatment  in the community by Age (<5)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Malaria cases treated community by Age (<5)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2b [N, 5+)] (<5)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2b [N]: Cas de paludisme confirmés ayant reçu un traitement antipaludique de première intention dans la communauté par Âge (<5)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "dErygNfLY68",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "egU15bdlWNI"
+                }
+            ],
+            "code": "[GFADEX]_egU15bdlWNI_dErygNfLY68",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "gUzS5f4sDOu",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2b [N]: Confirmed malaria cases treated that received first-line antimalarial treatment  in the community by Age (5+)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Malaria cases treated community by Age (5+)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2b [N, 5+)] (5+)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2b [N]: Cas de paludisme confirmés ayant reçu un traitement antipaludique de première intention dans la communauté par Âge (5+)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "jlv6LGtVPdw"
+                }
+            ],
+            "code": "[GFADEX]_jlv6LGtVPdw_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "foXrqBWOQ75",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2c [D]: Confirmed malaria cases at private sector sites (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Confirmed malaria cases at private sites (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2c [D, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2c [D]: Cas de paludisme confirmés dans des structures du secteur privé (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "P22ShSceXku",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "nqikr6xCp7N"
+                }
+            ],
+            "code": "[GFADEX]_nqikr6xCp7N_P22ShSceXku",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "bTsH6RUwYSg",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2c [D]: Confirmed malaria cases at private sector sites by Age (<5)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Conf. malaria cases at private sector by Age (<5)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2c [D, 5+)] (<5)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2c [D]: Cas de paludisme confirmés dans des structures du secteur privé par Âge (<5)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "dErygNfLY68",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "nqikr6xCp7N"
+                }
+            ],
+            "code": "[GFADEX]_nqikr6xCp7N_dErygNfLY68",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "qgQYwKVN01J",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2c [D]: Confirmed malaria cases at private sector sites by Age (5+)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Conf. malaria cases at private sector by Age (5+)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2c [D, 5+)] (5+)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2c [D]: Cas de paludisme confirmés dans des structures du secteur privé par Âge (5+)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "gcBTjVrPy9k"
+                }
+            ],
+            "code": "[GFADEX]_gcBTjVrPy9k_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "cq6QYNiCzuL",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2c [N]: Confirmed malaria cases treated that received first-line antimalarial treatment according to national policy at private sector sites (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Malaria cases treated private sector (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2c [N, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2c [N]: Cas de paludisme confirmés ayant reçu un traitement antipaludique de première intention conformément aux politiques nationales dans des structures du secteur privé (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "P22ShSceXku",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "u3ShDkw4gmA"
+                }
+            ],
+            "code": "[GFADEX]_u3ShDkw4gmA_P22ShSceXku",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "gQEIDSwtOLW",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2c [N]: Confirmed malaria cases treated that received first-line antimalarial treatment according to national policy at private sector sites by Age (<5)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Malaria cases treated private sector sites by Age (<5)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2c [N, 5+)] (<5)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2c [N]: Cas de paludisme confirmés ayant reçu un traitement antipaludique de première intention conformément aux politiques nationales dans des structures du secteur privé par Âge (<5)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "dErygNfLY68",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "u3ShDkw4gmA"
+                }
+            ],
+            "code": "[GFADEX]_u3ShDkw4gmA_dErygNfLY68",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "slsG64Ufw2B",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-2c [N]: Confirmed malaria cases treated that received first-line antimalarial treatment according to national policy at private sector sites by Age (5+)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Malaria cases treated private sector sites by Age (5+)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-2c [N, 5+)] (5+)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-2c [N]: Cas de paludisme confirmés ayant reçu un traitement antipaludique de première intention conformément aux politiques nationales dans des structures du secteur privé par Âge (5+)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "OmhBzIfIxa3",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "xzdkCNA9baS"
+                }
+            ],
+            "code": "[GFADEX]_xzdkCNA9baS_OmhBzIfIxa3",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "pte4UGFuBnk",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-5 [D]: Confirmed cases during the reporting period by source of infection (Imported)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Confirmed malaria cases in period by Source (Imported)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-5 [D, Infection source] (Imported)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-5 [D]: Nombre total de cas confirmés par Source d'infection (Importé)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "IunIvJsAgSc",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "xzdkCNA9baS"
+                }
+            ],
+            "code": "[GFADEX]_xzdkCNA9baS_IunIvJsAgSc",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "l2oewhXj0fP",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-5 [D]: Confirmed cases during the reporting period by source of infection (Locally acquired)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Confirmed malaria cases in period by Source (Locally acquired)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-5 [D, Infection source] (Locally acquired)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-5 [D]: Nombre total de cas confirmés par Source d'infection (Acquis localement)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "mrAwUazeVF3"
+                }
+            ],
+            "code": "[GFADEX]_mrAwUazeVF3_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "a3sPmncgZH0",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-5 [D]: Confirmed malaria cases during the reporting period (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Confirmed malaria cases during period (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-5 [D, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-5 [D]: Nombre total de cas confirmés  (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "hDBvFTGQbzS"
+                }
+            ],
+            "code": "[GFADEX]_hDBvFTGQbzS_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "pJiDghpE4Yv",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-5 [N]: Confirmed cases fully investigated and classified as per national guidance during the reporting period (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Fully investigated malaria cases (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-5 [N, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-5 [N]: Cas confirmés ayant fait l’objet d’une investigation complète et ayant été répertoriés conformément aux directives nationales  (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "OmhBzIfIxa3",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "oiAKybSf38Y"
+                }
+            ],
+            "code": "[GFADEX]_oiAKybSf38Y_OmhBzIfIxa3",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "hdcCWaDy5iG",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-5 [N]: Confirmed cases fully investigated and classified as per national guidance during the reporting period by source of infection (Imported)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Malaria cases investigated by source of infection (Imported)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-5 [N, Infection source] (Imported)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-5 [N]: Cas confirmés ayant fait l’objet d’une investigation complète et ayant été répertoriés conformément aux directives nationales par Source d'infection (Importé)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "IunIvJsAgSc",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "oiAKybSf38Y"
+                }
+            ],
+            "code": "[GFADEX]_oiAKybSf38Y_IunIvJsAgSc",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "ltmIEP1nGYV",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-5 [N]: Confirmed cases fully investigated and classified as per national guidance during the reporting period by source of infection (Locally acquired)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Malaria cases investigated by source of infection (Locally acquired)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-5 [N, Infection source] (Locally acquired)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-5 [N]: Cas confirmés ayant fait l’objet d’une investigation complète et ayant été répertoriés conformément aux directives nationales par Source d'infection (Acquis localement)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "qJNtjBqLnlC"
+                }
+            ],
+            "code": "[GFADEX]_qJNtjBqLnlC_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "zlOInWjDVKp",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-6 [D]: Malaria foci identified during the reporting period (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Malaria foci identified during period (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-6 [D, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-6 [D]: Foyers de paludisme identifiés  (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "hz8rABa751N"
+                }
+            ],
+            "code": "[GFADEX]_hz8rABa751N_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "dL5BwtoMphG",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-6 [N]: Malaria foci fully investigated and classified as per the national guidance during the reporting period (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Malaria foci investigate and classified (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-6 [N, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-6 [N]: Foyers de paludisme ayant fait l’objet d’une investigation complète et ayant été répertoriés conformément aux directives nationales  (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "ugR95ZQFsTp"
+                }
+            ],
+            "code": "[GFADEX]_ugR95ZQFsTp_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "neMuLhvAHt4",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-7 [N]: Districts achieving national target for the proportion of suspected malaria cases who receive a parasitological test. (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Districts suspect malaria tests (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-7 [N, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-7 [N]: Districts ayant atteint l’objectif national pour la proportion de cas présumés de paludisme soumis à un test parasitologique (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "zeexifmhHOC",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "h7uxpr4aKmG"
+                }
+            ],
+            "code": "[GFADEX]_h7uxpr4aKmG_zeexifmhHOC",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "fk7rGzZCy2i",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-7 [N]: Districts achieving national target for the proportion of suspected malaria cases who receive a parasitological test. by provider type (Community)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Districts suspect malaria tests by provider type (Community)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-7 [N, Provider type] (Community)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-7 [N]: Districts ayant atteint l’objectif national pour la proportion de cas présumés de paludisme soumis à un test parasitologique par Type de fournisseur (Communauté)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "Ndn2QshgfUA",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "h7uxpr4aKmG"
+                }
+            ],
+            "code": "[GFADEX]_h7uxpr4aKmG_Ndn2QshgfUA",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "l1woI4c78Xv",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-7 [N]: Districts achieving national target for the proportion of suspected malaria cases who receive a parasitological test. by provider type (Private)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Districts suspect malaria tests by provider type (Private)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-7 [N, Provider type] (Private)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-7 [N]: Districts ayant atteint l’objectif national pour la proportion de cas présumés de paludisme soumis à un test parasitologique par Type de fournisseur (Privé)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "qE3J4zAe6OU",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "h7uxpr4aKmG"
+                }
+            ],
+            "code": "[GFADEX]_h7uxpr4aKmG_qE3J4zAe6OU",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "fK853FQHV2E",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-7 [N]: Districts achieving national target for the proportion of suspected malaria cases who receive a parasitological test. by provider type (Public)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Districts suspect malaria tests by provider type (Public)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-7 [N, Provider type] (Public)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-7 [N]: Districts ayant atteint l’objectif national pour la proportion de cas présumés de paludisme soumis à un test parasitologique par Type de fournisseur (Publique)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "i8EhI5Nlvzj"
+                }
+            ],
+            "code": "[GFADEX]_i8EhI5Nlvzj_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "a2SAJM3jlps",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-7|8 [D]: Districts at risk of malaria transmission (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Total districts at risk of malaria (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-7|8 [D, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-7|8 [D]: Nombre total de districts exposés au risque de transmission du paludisme (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "d4L8OX5oHCw"
+                }
+            ],
+            "code": "[GFADEX]_d4L8OX5oHCw_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "ybBzLTFV93N",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-8 [N]: Districts achieving national targets for the proportion of confirmed malaria cases who received first-line antimalarial treatment (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Districts meeting target malaria treated (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-8 [N, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-8 [N]: Districts ayant atteint l’objectif national pour la proportion de cas confirmés de paludisme ayant reçu un traitement antipaludique de première intention (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "zeexifmhHOC",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "iurTHgFMR1J"
+                }
+            ],
+            "code": "[GFADEX]_iurTHgFMR1J_zeexifmhHOC",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "fNVnMu2Qa0y",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-8 [N]: Districts achieving national targets for the proportion of confirmed malaria cases who received first-line antimalarial treatment by provider type (Community)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Districts met conf. malaria target by prov. type (Community)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-8 [N, Provider type] (Community)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-8 [N]: Districts ayant atteint l’objectif national pour la proportion de cas confirmés de paludisme ayant reçu un traitement antipaludique de première intention par Type de fournisseur (Communauté)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "Ndn2QshgfUA",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "iurTHgFMR1J"
+                }
+            ],
+            "code": "[GFADEX]_iurTHgFMR1J_Ndn2QshgfUA",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "isA4oXWnxr3",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-8 [N]: Districts achieving national targets for the proportion of confirmed malaria cases who received first-line antimalarial treatment by provider type (Private)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Districts met conf. malaria target by prov. type (Private)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-8 [N, Provider type] (Private)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-8 [N]: Districts ayant atteint l’objectif national pour la proportion de cas confirmés de paludisme ayant reçu un traitement antipaludique de première intention par Type de fournisseur (Privé)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "qE3J4zAe6OU",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "iurTHgFMR1J"
+                }
+            ],
+            "code": "[GFADEX]_iurTHgFMR1J_qE3J4zAe6OU",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "hHUNlwV7dae",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-8 [N]: Districts achieving national targets for the proportion of confirmed malaria cases who received first-line antimalarial treatment by provider type (Public)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Districts met conf. malaria target by prov. type (Public)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-8 [N, Provider type] (Public)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-8 [N]: Districts ayant atteint l’objectif national pour la proportion de cas confirmés de paludisme ayant reçu un traitement antipaludique de première intention par Type de fournisseur (Publique)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "dAft0DmpVKv"
+                }
+            ],
+            "code": "[GFADEX]_dAft0DmpVKv_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "m1g43NJpbVe",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-9 [D]: Passively detected malaria cases (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Total passively detected malaria cases (Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-9 [D, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-9 [D]: Nombre total de cas de paludisme détectés de manière passive (défaut)"
+                }
+            ]
+        },
+        {
+            "aggregateExportAttributeOptionCombo": "DxDJklvqL7Q",
+            "aggregateExportCategoryOptionCombo": "HllvX50cXC0",
+            "attributeValues": [
+                {
+                    "attribute": {
+                        "id": "nHzX73VyNun"
+                    },
+                    "value": "gPGS2RkHU9I"
+                }
+            ],
+            "code": "[GFADEX]_gPGS2RkHU9I_HllvX50cXC0",
+            "decimals": 0,
+            "denominator": 1,
+            "denominatorDescription": "One",
+            "id": "rje2pTwIRqr",
+            "indicatorType": {
+                "id": "kHy61PbChXr"
+            },
+            "name": "[GFADEX] CM-9 [N]: Detected malaria patients contacting health services within 48 h of appearance of symptoms (Total) (default)",
+            "numerator": 0,
+            "numeratorDescription": "[GFADEX] Malaria patients seek treatment w/in 48 hrs(Total) (default)",
+            "sharing": {
+                "public": "--------",
+                "userGroups": {
+                    "sy08MFXzfuo": {
+                        "access": "rw------",
+                        "id": "sy08MFXzfuo"
+                    },
+                    "ykWVAivdMFq": {
+                        "access": "r-------",
+                        "id": "ykWVAivdMFq"
+                    }
+                }
+            },
+            "shortName": "CM-9 [N, default] (default)",
+            "translations": [
+                {
+                    "locale": "fr",
+                    "property": "NAME",
+                    "value": "[GFADEX] CM-9 [N]: Cas de paludisme détectés contactant les services de santé dans les 48 heures suivant l’apparition des symptômes (défaut)"
+                }
+            ]
+        }
+    ]
+}
