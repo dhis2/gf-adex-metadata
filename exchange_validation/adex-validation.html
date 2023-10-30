@@ -1,0 +1,372 @@
+<style type="text/css" media="screen">
+
+/* Put your CSS styling here */
+
+</style>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+<script type="text/javascript">
+
+	var baseUrl = "../api/";
+
+	var indicators = false;
+	var indicatorsConf = {};
+	var indicatorsUnconf = {};
+
+	var exchanges = false;
+
+	var validationResults = {
+		"REQ_IND_DUPLICATED": {
+			"title": "Requests with duplicate indicator ids",
+			"instruction": "GF ADEx requests with the same indicator id repeated several times in the dx dimension. Review dx and remove any duplicates.",
+			"headers": [{"title": "Request"}],
+			"issues": []	
+		},
+		"REQ_IND_UNCONF": {
+			"title": "Requests with indicators that are not configured",
+			"instruction": "GF ADEx requests that include indicators that are not configured, meaning their numerator is 0. These indicators should either configured, or removed from the request.",
+			"headers": [{"title": "Request"}, {"title": "Indicator name"}, {"title": "Indicator id"}],
+			"issues": []	
+		},
+		"REQ_IND_NONGF": {
+			"title": "Requests with other indicators",
+			"instruction": "GF ADEx requests with indicators that are not GF ADEx indicators (i.e. do not have [GFADEX] prefix). Only GF ADEx indicators should be included in requests.",
+			"headers": [{"title": "Request"}, {"title": "Indicator id"}],
+			"issues": []	
+		},
+		"REQ_PE_MIXED": {
+			"title": "Requests with mixed period types",
+			"instruction": "GF ADEx requests with mixed period types, i.e. the periods specified in the 'pe' dimension do not have the same periodicity. This should be changed so that only on period type is included in each request.",
+			"headers": [{"title": "Request"}, {"title": "Request period"}],
+			"issues": []	
+		},
+		"REQ_PE_UNKNOWN": {
+			"title": "Requests with unsupported period types",
+			"instruction": "GF ADEx requests that include periods other than years, quarters or months, or where the period type could not be determined. Change these to one of the supported types.",
+			"headers": [{"title": "Request"}, {"title": "Request period"}],
+			"issues": []	
+		},
+		"REQ_IND_PERIOD_CONFLICT": {
+			"title": "Indicators in multiple requests with different period type",
+			"instruction": "GF ADEx indicators can be included in multiple requests in some cases, but only if the requests have the same period type.",
+			"headers": [{"title": "Indicator name"}, {"title": "Indicator id"}, {"title": "Request"}],
+			"issues": []	
+		},
+		"IND_CONF_IGNORED": {
+			"title": "Indicators that are configured but not in requests",
+			"instruction": "GF ADEx indicators that have been configured (numerator ≠ 0), but are not included in any GF ADEx requests.",
+			"headers": [{"title": "Indicator name"}, {"title": "Indicator id"}],
+			"issues": []	
+		},
+		"IND_DENOM_CHANGED": {
+			"title": "Indicators with modified denominator",
+			"instruction": "GF ADEx indicators where the denominator has been changed from '1'. This should be reviewed, as all GF ADEx indicators should be reported as numbers only.",
+			"headers": [{"title": "Indicator name"}, {"title": "Indicator id"}, {"title": "Denominator"}],
+			"issues": []	
+		}
+	}
+	
+
+	//Fetch async from API
+	async function d2Fetch(endpoint) {
+		return new Promise(function (resolve, reject) {
+			 $.ajax({
+				"type": "GET",
+				"url": baseUrl + endpoint,
+				"dataType": "json",
+				"success": function (data) {
+					resolve(data);
+				},
+				"error": function (err) {
+					console.log(err)
+					reject(false);
+				}
+			});
+		});
+	}
+
+
+	//Fetch the GF indicators (based on [GFADEX] code in name)
+	async function fetchIndicators() {
+		data = await d2Fetch("indicators.json?filter=name:$like:[GFADEX]&fields=id,name,code,numerator,denominator&paging=false");
+		if (!data || data.indicators.length == 0) {
+			console.log("No GF ADEx indicators found");
+			return false;
+		}
+		else {
+			return data.indicators;
+		}
+	}
+
+
+	//Fetch the GF exchanges (based on target server)
+	async function fetchExchanges() {
+		data = await d2Fetch("aggregateDataExchanges.json?filter=target.api.url:like:globalfund&fields=id,name,source[requests[*]],target[*]&paging=false");
+		if (!data || data.aggregateDataExchanges.length == 0) {
+			console.log("No GF data exchanges found");	
+			return false;
+		}
+		else {
+			return data.aggregateDataExchanges;
+		}
+	}
+
+
+	//Separate configured and non-configured indicators
+	function indicatorsCategorize() {
+		
+		for (var ind of indicators) {
+			if (ind.numerator == "0") indicatorsUnconf[ind.id] = ind;
+			else indicatorsConf[ind.id] = ind;
+		}
+		
+		var msg = Object.keys(indicatorsUnconf).length + " not configured, " + Object.keys(indicatorsConf).length + " configured";
+		console.log(msg);
+	}
+	
+	
+	//Separate request dx by periodicity
+	function findRequestPeriodInoncistenies() {	
+		//Loop over all requests and 1) look for period issues withing requests, 2) categories indicators by periodtype
+		var indicatorpTypes = {
+			"MONTHLY": [],
+			"QUARTERLY": [],
+			"YEARLY": []
+		};
+		for (var ex of exchanges) {
+			for (var req of ex.source.requests) {
+				periodType = identifyPerioditype(req.pe);
+				if (periodType == "UNKNOWN") {
+					validationResults["REQ_PE_UNKNOWN"].issues.push([req.name, req.pe.join(",")]);
+				}
+				else if (periodType == "MIXED") {
+					validationResults["REQ_PE_MIXED"].issues.push([req.name, req.pe.join(",")]);
+				}
+				else {
+					indicatorpTypes[periodType] = indicatorpTypes[periodType].concat(req.dx);
+				}
+			}
+		}
+
+		//When we have indicators categorized by periodType, we can look for IDs appearing in multiple
+		var allPtypes = ["MONTHLY", "QUARTERLY", "YEARLY"];
+		for (var i = 0; i < (allPtypes.length - 1); i++) {
+			for (var ind of indicatorpTypes[allPtypes[i]]) {
+				for (var j = i+1; j < allPtypes.length; j++) {
+					for (var otherInd of indicatorpTypes[allPtypes[j]]) {
+						if (ind == otherInd) {
+							validationResults["REQ_IND_PERIOD_CONFLICT"].issues.push([indicatorName(ind), ind, requestsWithIndicator(ind).join(", ")]);
+						}
+					}
+				}
+				
+			}
+		}
+	}
+
+
+	//Find any duplicate UIDs within a single request
+	function findDuplicatesInRequests() {
+		for (var ex of exchanges) {
+			for (var req of ex.source.requests) {
+				if (req.dx.length != uniqueEntries(req.dx).length) {
+					validationResults["REQ_IND_DUPLICATED"].issues.push([req.name]);
+				}		
+			}
+		}
+	}
+
+
+	//Find unconfigured indicators in requests
+	function findUnconfiguredInRequests() {
+		for (var ex of exchanges) {
+			for (var req of ex.source.requests) {
+				for (var ind of req.dx) {
+					if (indicatorsUnconf[ind]) {
+						validationResults["REQ_IND_UNCONF"].issues.push([req.name, indicatorsUnconf[ind].name, ind]);
+					}		
+				}
+			}
+		}
+	}
+
+
+	//Find configured indicators NOT in requests
+	function findConfiguredNotInRequests() {
+		for (var confInd in indicatorsConf) {
+			var found = false
+			for (var ex of exchanges) {
+				for (var req of ex.source.requests) {
+					if ($.inArray(confInd, req.dx) !== -1) found = true
+				}
+			}
+			if (!found)	validationResults["IND_CONF_IGNORED"].issues.push([indicatorsConf[confInd].name, indicatorsConf[confInd].id]);
+		}
+	}
+	
+	
+	//Find non-GF indicators in request
+	function findNonGFInRequests() {
+		for (var ex of exchanges) {
+			for (var req of ex.source.requests) {
+				for (var ind of req.dx) {
+					if (!indicatorsUnconf.hasOwnProperty(ind) && !indicatorsConf.hasOwnProperty(ind)) {
+						validationResults["REQ_IND_NONGF"].issues.push([req.name, ind]);
+					}		
+				}
+			}
+		}
+	}
+
+
+	//Find indicators with denominator != 1
+	function findChangedDenominators() {
+		for (var ind of indicators) {
+			if (ind.denominator != "1") {
+				validationResults["IND_DENOM_CHANGED"].issues.push([ind.name, ind.id, ind.denominator]);
+			}
+		}
+	}
+	
+
+	//TODO? Compare ID/code/attributes with current master on GH?
+
+
+	
+	//Get name of indicator from id
+	function indicatorName(id) {
+		for (var ind of indicators) {
+			if (ind.id == id) return ind.name;
+		}
+		return "UNKNOWN";
+	}
+
+	
+	//Figure out period type from request pe dimension
+	//Returns false is a mix of periodTypes are found
+	//Year, quarter, month, week supported - else false
+	function identifyPerioditype(pe) {	
+		var periodType = false, latestPeriodType = false;
+		for (var p of pe) {
+			if (p.length == 4 || p.endsWith("_YEARS") || p.endsWith("_YEAR")) {
+				latestPeriodType = "YEARLY";
+			}
+			else if (p.indexOf("Q") == 4 || p.endsWith("_QUARTERS") || p.endsWith("_QUARTER")) {
+				latestPeriodType = "QUARTERLY";
+			}
+			else if (p.length == 6 || p.endsWith("_MONTHS") || p.endsWith("_MONTH")) {
+				latestPeriodType = "MONTHLY";
+			}
+			else {
+				console.log("Unknown period type: " + p);
+				return "UNKNOWN";
+			}
+				
+			//First iteration only
+			if (!periodType) periodType = latestPeriodType;
+			
+			//Return if periods are mixed
+			if (periodType != latestPeriodType) return "MIXED";
+		}
+
+		return periodType;
+	}
+
+	//Return name of request(s) that a given indicator is included in
+	function requestsWithIndicator(indicatorId) {
+		var requests = [];
+		for (var ex of exchanges) {
+			for (var req of ex.source.requests) {
+				if ($.inArray(indicatorId, req.dx) >= 0) requests.push(req.name);
+			}
+		}
+		return requests;
+
+	}
+	
+	//Get unique values from array of strings
+	function uniqueEntries(array) {
+		return $.grep(array, function(el, index) {
+			return index == $.inArray(el, array);
+		});
+	}
+	
+	
+	//Add results to report
+	function printValidationResults() {
+
+		//Make summary
+		var html = "<h2>Summary</h2>";
+		var html = html + "<table id='summary' class='display' width='100%'>";
+		html = html + "<thead><tr><th>Validation check</th><th>Result</th></tr></thead><tbody>";
+		for (var validationType in validationResults) {
+			var result = validationResults[validationType];
+			html = html + "<tr><td>" + result.title + "</td>";
+			if (result.issues.length > 0) {
+				html = html + "<td>" + result.issues.length + " issues</td></tr>";
+			}
+			else {
+				html = html + "<td>OK</td></tr>";
+			}
+		}
+		html = html + "</tbody></table>"
+		$("#result").append(html);
+		new DataTable("#summary", {"paging": false, "searching": false});
+
+
+		//Make detailed tables, only if there are violations
+		for (var validationType in validationResults) {
+			var result = validationResults[validationType];
+			
+
+			if (result.issues.length > 0) {
+				var html = "<h2>" + result.title + "</h2>";
+				html = html + "<p>" + result.instruction + "</p>";
+				html = html + "<table id='" + validationType + "' class='display' width='100%'></table>";
+				$("#result").append(html);	
+				
+				new DataTable("#" + validationType, {
+					columns: result.headers,
+					data: result.issues
+				});
+			}	
+		}	
+	}
+	
+	//Run through all validation checks
+	async function runValidation() {
+		console.log("Starting validation");
+		
+		//Get the stuff to validate
+		indicators = await fetchIndicators();
+		exchanges = await fetchExchanges();
+		if (indicators && exchanges) console.log("Fetched indicators and exchanges");
+		else return;
+		
+		indicatorsCategorize();
+		findDuplicatesInRequests();
+		findUnconfiguredInRequests();
+		findConfiguredNotInRequests();
+		findNonGFInRequests();
+		findChangedDenominators();
+		findRequestPeriodInoncistenies();
+		
+		printValidationResults();
+		
+		console.log("Finished validation");
+	}
+	
+	
+	
+	$( document ).ready( function() {
+		runValidation();
+	});
+
+</script>
+
+<div>
+	<h1>GF ADEx configuration validation</h1>
+	<div id="result"></div>
+</div>
