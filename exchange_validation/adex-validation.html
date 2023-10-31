@@ -1,0 +1,505 @@
+<style type="text/css" media="screen">
+</style>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+</link>
+
+
+<script type="text/javascript">
+
+	const baseUrl = "../api/";
+
+	var indicators = false;
+	var indicatorsConf = {};
+	var indicatorsUnconf = {};
+
+	var exchanges = false;
+	const iso3_codes = ["AFG", "ALB", "AGO", "ARM", "AZE", "BGD", "BLR", "BLZ",
+		"BEN", "BTN", "BOL", "BWA", "BFA", "BDI", "CPV", "KHM", "CMR", "CAF", "TCD",
+		"COL", "COM", "COG", "COD", "CRI", "CIV", "CUB", "DJI", "DOM", "ECU", "EGY",
+		"SLV", "ERI", "SWZ", "ETH", "FJI", "GAB", "GMB", "GEO", "GHA", "GTM", "GIN",
+		"GNB", "GUY", "HTI", "HND", "IND", "IDN", "IRN", "JAM", "KAZ", "KEN", "PRK",
+		"XXK", "KGZ", "LAO", "LSO", "LBR", "MDG", "MWI", "MYS", "MLI", "MRT", "MUS",
+		"MDA", "MNG", "MNE", "MAR", "MOZ", "MMR", "NAM", "NPL", "NIC", "NER", "NGA",
+		"PAK", "PNG", "PRY", "PER", "PHL", "RUS", "RWA", "STP", "SEN", "SRB", "SLE",
+		"SLB", "SOM", "ZAF", "SSD", "LKA", "SDN", "SUR", "TJK", "TZA", "THA", "TLS",
+		"TGO", "TUN", "TKM", "UGA", "UKR", "UZB", "VUT", "VEN", "VNM", "YEM", "ZMB",
+		"XZB", "ZWE"]
+
+	var validationResults = {
+		"REQ_IND_DUPLICATED": {
+			"title": "Requests with duplicate indicators",
+			"instruction": "GF ADEx requests with the same indicator repeated in the dx section. Review dx and remove any duplicates.",
+			"headers": [{ "title": "Request" }],
+			"issues": []
+		},
+		"REQ_IND_UNCONF": {
+			"title": "Requests with indicators that are not configured",
+			"instruction": "GF ADEx requests that include indicators that are not configured, meaning their numerator is 0. These indicators should either configured, or removed from the request.",
+			"headers": [{ "title": "Request" }, { "title": "Indicator name" }, { "title": "Indicator id" }],
+			"issues": []
+		},
+		"REQ_IND_NONGF": {
+			"title": "Requests with other indicators",
+			"instruction": "GF ADEx requests with indicators that are not GF ADEx indicators (i.e. do not have [GFADEX] prefix). Only GF ADEx indicators should be included in requests.",
+			"headers": [{ "title": "Request" }, { "title": "Indicator id" }],
+			"issues": []
+		},
+		"REQ_PE_MIXED": {
+			"title": "Requests with mixed period types",
+			"instruction": "GF ADEx requests with mixed period types, i.e. the periods specified in the 'pe' dimension do not have the same periodicity. This should be changed so that only on period type is included in each request.",
+			"headers": [{ "title": "Request" }, { "title": "Request period" }],
+			"issues": []
+		},
+		"REQ_PE_UNKNOWN": {
+			"title": "Requests with unsupported period types",
+			"instruction": "GF ADEx requests that include periods other than years, quarters or months, or where the period type could not be determined. Change these to one of the supported types.",
+			"headers": [{ "title": "Request" }, { "title": "Request period" }],
+			"issues": []
+		},
+		"REQ_IND_PERIOD_CONFLICT": {
+			"title": "Indicators in multiple requests with different period type",
+			"instruction": "GF ADEx indicators can be included in multiple requests in some cases, but only if the requests have the same period type.",
+			"headers": [{ "title": "Indicator name" }, { "title": "Indicator id" }, { "title": "Request" }],
+			"issues": []
+		},
+		"REQ_PE_RELATIVE": {
+			"title": "Requests with non-relative period types",
+			"instruction": "GF ADEx requests that include periods other than relative periods. Change these to one of the supported types.",
+			"headers": [{ "title": "Request" }, { "title": "Request period" }],
+			"issues": []
+		},
+		"IND_CONF_IGNORED": {
+			"title": "Indicators that are configured but not in requests",
+			"instruction": "GF ADEx indicators that have been configured (numerator ≠ 0), but are not included in any GF ADEx requests.",
+			"headers": [{ "title": "Indicator name" }, { "title": "Indicator id" }],
+			"issues": []
+		},
+		"IND_DENOM_CHANGED": {
+			"title": "Indicators with modified denominator",
+			"instruction": "GF ADEx indicators where the denominator has been changed from '1'. This should be reviewed, as all GF ADEx indicators should be reported as numbers only.",
+			"headers": [{ "title": "Indicator name" }, { "title": "Indicator id" }, { "title": "Denominator" }],
+			"issues": []
+		},
+		"EX_PUBLIC_SHARING": {
+			"title": "GF ADEX exchanges should not be publicly shared.",
+			"instruction": "GF ADEx exchanges should not be publicly shared.",
+			"headers": [{ "title": "Exchange name" }],
+			"issues": []
+		},
+		"REQ_OUTPUT_ID_SCHEME": {
+			"title": "GF ADEx requests should use the correct attribute output scheme",
+			"instruction": "GF ADEx requests should use the correct attribute output scheme (\"outputIdScheme\": \"attribute:nHzX73VyNun\)",
+			"headers": [{ "title": "Request" }, { "title": "Output ID scheme" }],
+			"issues": []
+		},
+		"EX_TARGET_API": {
+			"title": "GF ADEx exchanges should use the correct target server.",
+			"instruction": "GF ADEx exchanges should use the correct target server: https://www.adex.theglobalfund.org",
+			"headers": [{ "title": "Exchange name" }, { "title": "Target API" }],
+			"issues": []
+		},
+		"REQ_ROOT_ORGUNIT": {
+			"title": "GF ADEx requests should be aggregated to the level 1 organisation unit.",
+			"instruction": "Check to to be sure there is only one organisation unit defined in the ou dimension",
+			"headers": [{ "title": "Request" }, { "title": "Organisation unit" }],
+			"issues": []
+		},
+		"ORGUNIT_CODE" : {
+			"title" : "The root organisation unit should have a valid ISO3 code as the code or as an attribute",
+			"instruction" : "Check to be sure that you have defined either the code or attribute for your country with the correct ISO3 code",
+			"headers" : [{ "title": "Organisation unit" }, { "title": "Code" }, { "title": "Attribute" }],
+			issues: []
+		}
+	}
+
+
+	//Fetch async from API
+	async function d2Fetch(endpoint) {
+		return new Promise(function (resolve, reject) {
+			$.ajax({
+				"type": "GET",
+				"url": baseUrl + endpoint,
+				"dataType": "json",
+				"success": function (data) {
+					resolve(data);
+				},
+				"error": function (err) {
+					console.log(err)
+					reject(false);
+				}
+			});
+		});
+	}
+
+
+	//Fetch the GF indicators (based on [GFADEX] code in name)
+	async function fetchIndicators() {
+		data = await d2Fetch("indicators.json?filter=name:$like:[GFADEX]&fields=id,name,code,numerator,denominator&paging=false");
+		if (!data || data.indicators.length == 0) {
+			console.log("No GF ADEx indicators found");
+			return false;
+		}
+		else {
+			return data.indicators;
+		}
+	}
+
+
+	//Fetch the GF exchanges (based on target server)
+	async function fetchExchanges() {
+		data = await d2Fetch("aggregateDataExchanges.json?filter=target.api.url:like:globalfund&fields=*&paging=false");
+		if (!data || data.aggregateDataExchanges.length == 0) {
+			console.log("No GF data exchanges found");
+			return false;
+		}
+		else {
+			return data.aggregateDataExchanges;
+		}
+	}
+
+	//Get the national orgunit
+	async function fetchRootOrgUnit() {
+		data = await d2Fetch("organisationUnits.json?filter=level:eq:1&fields=id,name,code,attributeValues[*]");
+		if (!data || data.organisationUnits.length == 0) {
+			console.log("No root orgunit found");
+			return false;
+		}
+		else {
+			return data.organisationUnits[0];
+		}
+	}
+
+	//Separate configured and non-configured indicators
+	function indicatorsCategorize() {
+
+		for (var ind of indicators) {
+			if (ind.numerator == "0") indicatorsUnconf[ind.id] = ind;
+			else indicatorsConf[ind.id] = ind;
+		}
+
+		var msg = Object.keys(indicatorsUnconf).length + " not configured, " + Object.keys(indicatorsConf).length + " configured";
+		console.log(msg);
+	}
+
+
+	//Separate request dx by periodicity
+	function findRequestPeriodInoncistenies() {
+		/* Loop over all requests and 1) look for period issues within requests
+		 2) categories indicators by periodtype */
+
+		var indicatorpTypes = {
+			"MONTHLY": [],
+			"QUARTERLY": [],
+			"YEARLY": []
+		};
+
+		for (var ex of exchanges) {
+			for (var req of ex.source.requests) {
+				periodType = identifyPerioditype(req.pe);
+				if (periodType == "UNKNOWN") {
+					validationResults["REQ_PE_UNKNOWN"].issues.push([req.name, req.pe.join(",")]);
+				}
+				else if (periodType == "MIXED") {
+					validationResults["REQ_PE_MIXED"].issues.push([req.name, req.pe.join(",")]);
+				}
+				else {
+					indicatorpTypes[periodType] = indicatorpTypes[periodType].concat(req.dx);
+				}
+			}
+		}
+
+		//When we have indicators categorized by periodType, we can look for IDs appearing in multiple
+		var allPtypes = ["MONTHLY", "QUARTERLY", "YEARLY"];
+		for (var i = 0; i < (allPtypes.length - 1); i++) {
+			for (var ind of indicatorpTypes[allPtypes[i]]) {
+				for (var j = i + 1; j < allPtypes.length; j++) {
+					for (var otherInd of indicatorpTypes[allPtypes[j]]) {
+						if (ind == otherInd) {
+							validationResults["REQ_IND_PERIOD_CONFLICT"].issues.push([indicatorName(ind), ind, requestsWithIndicator(ind).join(", ")]);
+						}
+					}
+				}
+
+			}
+		}
+	}
+
+	//Reccomend to use relative period types
+	function findNonRelativePeriods() {
+		const relative_period_types = ["LAST_12_MONTHS", "LAST_4_QUARTERS", "LAST_YEAR", "THIS_YEAR"];
+
+		for (var ex of exchanges) {
+			for (var req of ex.source.requests) {
+				if (req.pe.some(pe => !relative_period_types.includes(pe))) {
+					validationResults["REQ_PE_RELATIVE"].issues.push([req.name, req.pe.join(",")]);
+				}
+
+			}
+		}
+	}
+
+	//Find any duplicate UIDs within a single request
+	function findDuplicatesInRequests() {
+		for (var ex of exchanges) {
+			for (var req of ex.source.requests) {
+				if (req.dx.length != uniqueEntries(req.dx).length) {
+					validationResults["REQ_IND_DUPLICATED"].issues.push([req.name]);
+				}
+			}
+		}
+	}
+
+
+	//Find unconfigured indicators in requests
+	function findUnconfiguredInRequests() {
+		for (var ex of exchanges) {
+			for (var req of ex.source.requests) {
+				for (var ind of req.dx) {
+					if (indicatorsUnconf[ind]) {
+						validationResults["REQ_IND_UNCONF"].issues.push([req.name, indicatorsUnconf[ind].name, ind]);
+					}
+				}
+			}
+		}
+	}
+
+
+	//Find configured indicators NOT in requests
+	function findConfiguredNotInRequests() {
+		for (var confInd in indicatorsConf) {
+			var found = false
+			for (var ex of exchanges) {
+				for (var req of ex.source.requests) {
+					if ($.inArray(confInd, req.dx) !== -1) found = true
+				}
+			}
+			if (!found) validationResults["IND_CONF_IGNORED"].issues.push([indicatorsConf[confInd].name, indicatorsConf[confInd].id]);
+		}
+	}
+
+
+	//Find non-GF indicators in request
+	function findNonGFInRequests() {
+		for (var ex of exchanges) {
+			for (var req of ex.source.requests) {
+				for (var ind of req.dx) {
+					if (!indicatorsUnconf.hasOwnProperty(ind) && !indicatorsConf.hasOwnProperty(ind)) {
+						validationResults["REQ_IND_NONGF"].issues.push([req.name, ind]);
+					}
+				}
+			}
+		}
+	}
+
+
+	//Find indicators with denominator != 1
+	function findChangedDenominators() {
+		for (var ind of indicators) {
+			if (ind.denominator != "1") {
+				validationResults["IND_DENOM_CHANGED"].issues.push([ind.name, ind.id, ind.denominator]);
+			}
+		}
+	}
+
+	function findPublicAccess() {
+		for (var ex of exchanges) {
+			if (ex.sharing.public != "--------") {
+				validationResults["EX_PUBLIC_SHARING"].issues.push([ex.name]);
+			}
+		}
+	}
+
+	function findWrongOutputIDScheme() {
+		for (var ex of exchanges) {
+			for (var req of ex.source.requests) {
+				if (req.outputIdScheme != "attribute:nHzX73VyNun") {
+					validationResults["REQ_OUTPUT_ID_SCHEME"].issues.push([req.name, req.outputIdScheme]);
+				}
+			}
+		}
+	}
+
+	function findTargetAPI() {
+		for (var ex of exchanges) {
+			if (ex.target.api.url != "https://adex.theglobalfund.org/") {
+				validationResults["EX_TARGET_API"].issues.push([ex.name, ex.target.api.url]);
+			}
+		}
+	}
+
+	function validateRootOrgUnit() {
+		const root_orgunit_uid = root_orgunit.id;
+		for (var ex of exchanges) {
+			for (var req of ex.source.requests) {
+				if (req.ou != root_orgunit_uid || req.ou.length != 1) {
+					validationResults["REQ_ROOT_ORGUNIT"].issues.push([req.name, req.ou]);
+				}
+			}
+
+		}
+	}
+
+	function validateOrgUnitCode() {
+		const attributeValue = root_orgunit.attributeValues.find(
+			(attributeValue) => attributeValue.attribute.id == "hpe7LiGDgvo"
+		);
+
+		const ou_is_configured =  iso3_codes.includes(root_orgunit.code) || iso3_codes.includes(attributeValue.value);
+
+		if(!ou_is_configured) {
+			validationResults["ORGUNIT_CODE"].issues.push([root_orgunit.name, root_orgunit.code, attributeValue.value]);
+		}
+	}
+
+	//TODO? Compare ID/code/attributes with current master on GH?
+
+
+
+	//Get name of indicator from id
+	function indicatorName(id) {
+		for (var ind of indicators) {
+			if (ind.id == id) return ind.name;
+		}
+		return "UNKNOWN";
+	}
+
+
+	//Figure out period type from request pe dimension
+	//Returns false is a mix of periodTypes are found
+	//Year, quarter, month, week supported - else false
+	function identifyPerioditype(pe) {
+		var periodType = false, latestPeriodType = false;
+		for (var p of pe) {
+			if (p.length == 4 || p.endsWith("_YEARS") || p.endsWith("_YEAR")) {
+				latestPeriodType = "YEARLY";
+			}
+			else if (p.indexOf("Q") == 4 || p.endsWith("_QUARTERS") || p.endsWith("_QUARTER")) {
+				latestPeriodType = "QUARTERLY";
+			}
+			else if (p.length == 6 || p.endsWith("_MONTHS") || p.endsWith("_MONTH")) {
+				latestPeriodType = "MONTHLY";
+			}
+			else {
+				findNonRelativePeriods()
+				console.log("Unknown period type: " + p);
+				return "UNKNOWN";
+			}
+
+			//First iteration only
+			if (!periodType) periodType = latestPeriodType;
+
+			//Return if periods are mixed
+			if (periodType != latestPeriodType) return "MIXED";
+		}
+
+		return periodType;
+	}
+
+	//Return name of request(s) that a given indicator is included in
+	function requestsWithIndicator(indicatorId) {
+		var requests = [];
+		for (var ex of exchanges) {
+			for (var req of ex.source.requests) {
+				if ($.inArray(indicatorId, req.dx) >= 0) requests.push(req.name);
+			}
+		}
+		return requests;
+
+	}
+
+	//Get unique values from array of strings
+	function uniqueEntries(array) {
+		return $.grep(array, function (el, index) {
+			return index == $.inArray(el, array);
+		});
+	}
+
+
+	//Add results to report
+	function printValidationResults() {
+
+		//Make summary
+		var html = "<div id='summary_table'><h2>Summary</h2>";
+		var html = html + "<table id='summary' class='display' width='100%'>";
+		html = html + "<thead><tr><th>Validation check</th><th>Result</th></tr></thead><tbody>";
+		for (var validationType in validationResults) {
+			var result = validationResults[validationType];
+			html = html + "<tr><td>" + result.title + "</td>";
+			if (result.issues.length == 1) {
+				html = html + "<td>" + result.issues.length + " issue</td></tr>";
+			} else if (result.issues.length > 1) {
+				html = html + "<td>" + result.issues.length + " issues</td></tr>";
+			}
+			else {
+				html = html + "<td>OK</td></tr>";
+			}
+		}
+		html = html + "</tbody></table></div>"
+		$("#result").append(html);
+		new DataTable("#summary", { "paging": false, "searching": false, order : [[1, 'asc']]  });
+
+
+		//Make detailed tables, only if there are violations
+		for (var validationType in validationResults) {
+			var result = validationResults[validationType];
+
+
+			if (result.issues.length > 0) {
+				var html = "<h2>" + result.title + "</h2>";
+				html = html + "<p>" + result.instruction + "</p>";
+				html = html + "<table id='" + validationType + "' class='display' width='100%'></table>";
+				$("#result").append(html);
+
+				new DataTable("#" + validationType, {
+					columns: result.headers,
+					data: result.issues
+				});
+			}
+		}
+	}
+
+	//Run through all validation checks
+	async function runValidation() {
+		console.log("Starting validation");
+
+		//Get the stuff to validate
+		indicators = await fetchIndicators();
+		exchanges = await fetchExchanges();
+		root_orgunit = await fetchRootOrgUnit();
+
+		if (indicators && exchanges && root_orgunit) console.log("Fetched metadata.");
+		else return;
+
+		indicatorsCategorize();
+		findDuplicatesInRequests();
+		findUnconfiguredInRequests();
+		findConfiguredNotInRequests();
+		findNonGFInRequests();
+		findChangedDenominators();
+		findRequestPeriodInoncistenies();
+		findNonRelativePeriods();
+		findPublicAccess();
+		findWrongOutputIDScheme();
+		findTargetAPI();
+		validateRootOrgUnit();
+		validateOrgUnitCode();
+
+		printValidationResults();
+
+		console.log("Finished validation");
+	}
+
+
+
+	$(document).ready(function () {
+		runValidation();
+	});
+
+</script>
+
+<div>
+	<h1>GF ADEx configuration validation</h1>
+	<div id="result"></div>
+</div>
