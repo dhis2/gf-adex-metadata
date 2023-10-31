@@ -427,7 +427,7 @@
 		for (var validationType in validationResults) {
 			var result = validationResults[validationType];
 			html = html + "<tr><td>" + result.title + "</td>";
-			if (result.issues.length === 1) {
+			if (result.issues.length == 1) {
 				html = html + "<td>" + result.issues.length + " issue</td></tr>";
 			} else if (result.issues.length > 1) {
 				html = html + "<td>" + result.issues.length + " issues</td></tr>";
