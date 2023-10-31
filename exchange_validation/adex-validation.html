@@ -343,7 +343,7 @@
 
 	function validateOrgUnitCode() {
 		const attributeValue = root_orgunit.attributeValues.find(
-			(attributeValue) => attributeValue.attribute.id === "hpe7LiGDgvo"
+			(attributeValue) => attributeValue.attribute.id == "hpe7LiGDgvo"
 		);
 
 		const ou_is_configured =  iso3_codes.includes(root_orgunit.code) || iso3_codes.includes(attributeValue.value);
