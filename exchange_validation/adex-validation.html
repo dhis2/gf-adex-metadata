@@ -391,6 +391,13 @@
 		return "UNKNOWN";
 	}
 
+	function indicatorCode(id) {
+		for (var ind of indicators) {
+			if (ind.id == id) return ind.code;
+		}
+		return "UNKNOWN";
+	}
+
 	//Get human readable numerator
 	function indicatorNumeratorExpressionDescription(id){
 		for (var ind of updatedIndicators) {
@@ -495,13 +502,15 @@
 
 	function configToCSV() {
 		var csv_data = [];
+		csv_data.push('"Code","Indicator name","Period type","Numerator"');
 		for (var pType in indicatorpTypes) {
 			for(var indicator in indicatorpTypes[pType]) {
-				var csvrow = [];
-				csvrow.push('"' + indicatorName(indicatorpTypes[pType][indicator]) + '"');
-				csvrow.push('"' + indicatorpTypes[pType][indicator] + '"');
+				let csvrow = [];
+				let indicatorId = indicatorpTypes[pType][indicator];
+				csvrow.push('"' + indicatorCode(indicatorId) + '"');
+				csvrow.push('"' + indicatorName(indicatorId) + '"');
 				csvrow.push('"' + pType + '"');
-				csvrow.push('"' + indicatorNumeratorExpressionDescription(indicatorpTypes[pType][indicator]) + '"');
+				csvrow.push('"' + indicatorNumeratorExpressionDescription(indicatorId) + '"');
 				csv_data.push(csvrow.join(','));
 			}
 		}
