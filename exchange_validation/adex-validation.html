@@ -4,15 +4,22 @@
 <script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 </link>
-
-
 <script type="text/javascript">
 
 	const baseUrl = "../api/";
 
 	var indicators = false;
+	var operands = false;
+	var dataElements = false;
+	var updatedIndicators = false;
 	var indicatorsConf = {};
 	var indicatorsUnconf = {};
+
+	var indicatorpTypes = {
+			"MONTHLY": [],
+			"QUARTERLY": [],
+			"YEARLY": []
+		};
 
 	var exchanges = false;
 	const iso3_codes = ["AFG", "ALB", "AGO", "ARM", "AZE", "BGD", "BLR", "BLZ",
@@ -171,6 +178,30 @@
 		}
 	}
 
+		//Get the data element operands to substitute in the indicator formulas
+	async function fetchDataElementOperands() {
+		data = await d2Fetch("dataElementOperands.json?fields=id,shortName,dimensionItem&paging=false");
+		if (!data || data.dataElementOperands.length == 0) {
+			console.log("No data element operands could be found.");
+			return false;
+		}
+		else {
+			return data;
+		}
+	}
+
+	//Get the data elements when used directly in formulas
+	async function fetchDataElements() {
+		data = await d2Fetch("dataElements.json?fields=id,shortName&paging=false");
+		if (!data || data.dataElements.length == 0) {
+			console.log("No data elements could be found.");
+			return false;
+		}
+		else {
+			return data;
+		}
+	}
+
 	//Separate configured and non-configured indicators
 	function indicatorsCategorize() {
 
@@ -186,14 +217,9 @@
 
 	//Separate request dx by periodicity
 	function findRequestPeriodInoncistenies() {
-		/* Loop over all requests and 1) look for period issues within requests
-		 2) categories indicators by periodtype */
-
-		var indicatorpTypes = {
-			"MONTHLY": [],
-			"QUARTERLY": [],
-			"YEARLY": []
-		};
+		/* Loop over all requests and
+		1) look for period issues within requests
+		2) categories indicators by periodtype */
 
 		for (var ex of exchanges) {
 			for (var req of ex.source.requests) {
@@ -343,7 +369,7 @@
 
 	function validateOrgUnitCode() {
 		const attributeValue = root_orgunit.attributeValues.find(
-			(attributeValue) => attributeValue.attribute.id == "hpe7LiGDgvo"
+			(attributeValue) => attributeValue.attribute.id === "hpe7LiGDgvo"
 		);
 
 		const ou_is_configured =  iso3_codes.includes(root_orgunit.code) || iso3_codes.includes(attributeValue.value);
@@ -365,6 +391,20 @@
 		return "UNKNOWN";
 	}
 
+	function indicatorCode(id) {
+		for (var ind of indicators) {
+			if (ind.id == id) return ind.code;
+		}
+		return "UNKNOWN";
+	}
+
+	//Get human readable numerator
+	function indicatorNumeratorExpressionDescription(id){
+		for (var ind of updatedIndicators) {
+			if (ind.id == id) return ind.numerator;
+		}
+		return "UNKNOWN";
+	}
 
 	//Figure out period type from request pe dimension
 	//Returns false is a mix of periodTypes are found
@@ -422,12 +462,12 @@
 
 		//Make summary
 		var html = "<div id='summary_table'><h2>Summary</h2>";
-		var html = html + "<table id='summary' class='display' width='100%'>";
+		html = html + "<table id='summary' class='display' width='100%'>";
 		html = html + "<thead><tr><th>Validation check</th><th>Result</th></tr></thead><tbody>";
 		for (var validationType in validationResults) {
 			var result = validationResults[validationType];
 			html = html + "<tr><td>" + result.title + "</td>";
-			if (result.issues.length == 1) {
+			if (result.issues.length === 1) {
 				html = html + "<td>" + result.issues.length + " issue</td></tr>";
 			} else if (result.issues.length > 1) {
 				html = html + "<td>" + result.issues.length + " issues</td></tr>";
@@ -460,6 +500,76 @@
 		}
 	}
 
+	function configToCSV() {
+		var csv_data = [];
+		csv_data.push('"Code","Indicator name","Period type","Numerator"');
+		for (var pType in indicatorpTypes) {
+			for(var indicator in indicatorpTypes[pType]) {
+				let csvrow = [];
+				let indicatorId = indicatorpTypes[pType][indicator];
+				csvrow.push('"' + indicatorCode(indicatorId) + '"');
+				csvrow.push('"' + indicatorName(indicatorId) + '"');
+				csvrow.push('"' + pType + '"');
+				csvrow.push('"' + indicatorNumeratorExpressionDescription(indicatorId) + '"');
+				csv_data.push(csvrow.join(','));
+			}
+		}
+		csv_data = csv_data.join('\n');
+		downloadCSVFile(csv_data);
+	}
+
+	function downloadCSVFile(csv_data) {
+		CSVFile = new Blob([csv_data], {
+			type: "text/csv"
+		});
+		var temp_link = document.createElement('a');
+		temp_link.download = "gf_indicator_config.csv";
+		var url = window.URL.createObjectURL(CSVFile);
+		temp_link.href = url;
+		temp_link.style.display = "none";
+		document.body.appendChild(temp_link);
+		temp_link.click();
+		document.body.removeChild(temp_link);
+	}
+
+	//Replace formulas with short names
+	//Limited to only certain types of indicator which use
+	//either data elements or data element operands in the numerator
+	function replaceFormulasWithShortNames(indicators, operands, dataElements) {
+		const totalsMap = {};
+
+		dataElements.dataElements.forEach(dataElement => {
+			totalsMap[dataElement.id] = dataElement.shortName;
+		});
+
+		const detailsMap = {};
+		operands.dataElementOperands.forEach(operand => {
+			detailsMap[operand.dimensionItem] = operand.shortName;
+		});
+
+		indicators.forEach(indicator => {
+			if (indicator.numerator) {
+				indicator.numerator = indicator.numerator.replace(/(\w+\.\w+)/g, match => {
+					return detailsMap[match] || match;
+				});
+				indicator.numerator = indicator.numerator.replace(/(\w+)/g, match => {
+					return totalsMap[match] || match;
+				});
+			}
+
+			if (indicator.denominator) {
+				indicator.denominator = indicator.denominator.replace(/(\w+\.\w+)/g, match => {
+					return detailsMap[match] || match;
+				});
+				indicator.denominator = indicator.denominator.replace(/(\w+)/g, match => {
+					return totalsMap[match] || match;
+				});
+			}
+		});
+
+		return indicators;
+	}
+
 	//Run through all validation checks
 	async function runValidation() {
 		console.log("Starting validation");
@@ -468,7 +578,10 @@
 		indicators = await fetchIndicators();
 		exchanges = await fetchExchanges();
 		root_orgunit = await fetchRootOrgUnit();
-
+		indicators = await fetchIndicators();
+		operands = await fetchDataElementOperands();
+		dataElements = await fetchDataElements();
+		updatedIndicators = replaceFormulasWithShortNames(indicators, operands, dataElements);
 		if (indicators && exchanges && root_orgunit) console.log("Fetched metadata.");
 		else return;
 
@@ -501,5 +614,8 @@
 
 <div>
 	<h1>GF ADEx configuration validation</h1>
+	<button type="button" onclick="configToCSV()">
+		Download Exchange Summary
+	</button>
 	<div id="result"></div>
 </div>
