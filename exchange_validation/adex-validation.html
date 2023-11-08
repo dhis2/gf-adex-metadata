@@ -272,10 +272,8 @@
 		for (var ex of exchanges) {
 			for (var req of ex.source.requests) {
 				if (req.dx.length != uniqueEntries(req.dx).length) {
-					const dxs = req.dx;
-					const getDups = dxs => dxs.filter((item, index) => dxs.indexOf(item) !== index);
-					const duplicated_ds = getDups(req.dx);
-					validationResults["REQ_IND_DUPLICATED"].issues.push([req.name, duplicated_ds.join(", ")]);
+					const dxs_duplicated =  req.dx.filter((e,i,arr) => arr.indexOf(e) !== i);
+					validationResults["REQ_IND_DUPLICATED"].issues.push([req.name, dxs_duplicated.join(", ")]);
 				}
 			}
 		}
