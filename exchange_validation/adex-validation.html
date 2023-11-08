@@ -16,10 +16,10 @@
 	var indicatorsUnconf = {};
 
 	var indicatorpTypes = {
-			"MONTHLY": [],
-			"QUARTERLY": [],
-			"YEARLY": []
-		};
+		"MONTHLY": [],
+		"QUARTERLY": [],
+		"YEARLY": []
+	};
 
 	var exchanges = false;
 	const iso3_codes = ["AFG", "ALB", "AGO", "ARM", "AZE", "BGD", "BLR", "BLZ",
@@ -32,13 +32,13 @@
 		"PAK", "PNG", "PRY", "PER", "PHL", "RUS", "RWA", "STP", "SEN", "SRB", "SLE",
 		"SLB", "SOM", "ZAF", "SSD", "LKA", "SDN", "SUR", "TJK", "TZA", "THA", "TLS",
 		"TGO", "TUN", "TKM", "UGA", "UKR", "UZB", "VUT", "VEN", "VNM", "YEM", "ZMB",
-		"XZB", "ZWE"]
+		"XZB", "ZWE"];
 
 	var validationResults = {
 		"REQ_IND_DUPLICATED": {
 			"title": "Requests with duplicate indicators",
-			"instruction": "GF ADEx requests with the same indicator repeated in the dx section. Review dx and remove any duplicates.",
-			"headers": [{ "title": "Request" }],
+			"instruction": "GF ADEx requests with the same indicator repeated in the `dx` section. Resolve the duplicates listed below.",
+			"headers": [{ "title": "Request" }, { "title": "Duplicates" }],
 			"issues": []
 		},
 		"REQ_IND_UNCONF": {
@@ -97,7 +97,7 @@
 		},
 		"REQ_OUTPUT_ID_SCHEME": {
 			"title": "GF ADEx requests should use the correct attribute output scheme",
-			"instruction": "GF ADEx requests should use the correct attribute output scheme (\"outputIdScheme\": \"attribute:nHzX73VyNun\)",
+			"instruction": "GF ADEx requests should use the correct attribute output scheme (\"outputIdScheme\": \"attribute:nHzX73VyNun\")",
 			"headers": [{ "title": "Request" }, { "title": "Output ID scheme" }],
 			"issues": []
 		},
@@ -113,10 +113,10 @@
 			"headers": [{ "title": "Request" }, { "title": "Organisation unit" }],
 			"issues": []
 		},
-		"ORGUNIT_CODE" : {
-			"title" : "The root organisation unit should have a valid ISO3 code as the code or as an attribute",
-			"instruction" : "Check to be sure that you have defined either the code or attribute for your country with the correct ISO3 code",
-			"headers" : [{ "title": "Organisation unit" }, { "title": "Code" }, { "title": "Attribute" }],
+		"ORGUNIT_CODE": {
+			"title": "The root organisation unit should have a valid ISO3 code as the code or as an attribute",
+			"instruction": "Check to be sure that you have defined either the code or attribute for your country with the correct ISO3 code",
+			"headers": [{ "title": "Organisation unit" }, { "title": "Code" }, { "title": "Attribute" }],
 			issues: []
 		}
 	}
@@ -144,7 +144,7 @@
 	//Fetch the GF indicators (based on [GFADEX] code in name)
 	async function fetchIndicators() {
 		data = await d2Fetch("indicators.json?filter=name:$like:[GFADEX]&fields=id,name,code,numerator,denominator&paging=false");
-		if (!data || data.indicators.length == 0) {
+		if (!data || data.indicators.length === 0) {
 			console.log("No GF ADEx indicators found");
 			return false;
 		}
@@ -157,7 +157,7 @@
 	//Fetch the GF exchanges (based on target server)
 	async function fetchExchanges() {
 		data = await d2Fetch("aggregateDataExchanges.json?filter=target.api.url:like:globalfund&fields=*&paging=false");
-		if (!data || data.aggregateDataExchanges.length == 0) {
+		if (!data || data.aggregateDataExchanges.length === 0) {
 			console.log("No GF data exchanges found");
 			return false;
 		}
@@ -169,7 +169,7 @@
 	//Get the national orgunit
 	async function fetchRootOrgUnit() {
 		data = await d2Fetch("organisationUnits.json?filter=level:eq:1&fields=id,name,code,attributeValues[*]");
-		if (!data || data.organisationUnits.length == 0) {
+		if (!data || data.organisationUnits.length === 0) {
 			console.log("No root orgunit found");
 			return false;
 		}
@@ -178,10 +178,10 @@
 		}
 	}
 
-		//Get the data element operands to substitute in the indicator formulas
+	//Get the data element operands to substitute in the indicator formulas
 	async function fetchDataElementOperands() {
 		data = await d2Fetch("dataElementOperands.json?fields=id,shortName,dimensionItem&paging=false");
-		if (!data || data.dataElementOperands.length == 0) {
+		if (!data || data.dataElementOperands.length === 0) {
 			console.log("No data element operands could be found.");
 			return false;
 		}
@@ -193,7 +193,7 @@
 	//Get the data elements when used directly in formulas
 	async function fetchDataElements() {
 		data = await d2Fetch("dataElements.json?fields=id,shortName&paging=false");
-		if (!data || data.dataElements.length == 0) {
+		if (!data || data.dataElements.length === 0) {
 			console.log("No data elements could be found.");
 			return false;
 		}
@@ -205,10 +205,11 @@
 	//Separate configured and non-configured indicators
 	function indicatorsCategorize() {
 
-		for (var ind of indicators) {
-			if (ind.numerator == "0") indicatorsUnconf[ind.id] = ind;
-			else indicatorsConf[ind.id] = ind;
-		}
+		indicators.forEach(indicator => {
+			indicator.numerator === 0 ?
+			indicatorsUnconf[indicator.id] = indicator :
+			indicatorsConf[indicator.id] = indicator;
+		})
 
 		var msg = Object.keys(indicatorsUnconf).length + " not configured, " + Object.keys(indicatorsConf).length + " configured";
 		console.log(msg);
@@ -224,10 +225,10 @@
 		for (var ex of exchanges) {
 			for (var req of ex.source.requests) {
 				periodType = identifyPerioditype(req.pe);
-				if (periodType == "UNKNOWN") {
+				if (periodType === "UNKNOWN") {
 					validationResults["REQ_PE_UNKNOWN"].issues.push([req.name, req.pe.join(",")]);
 				}
-				else if (periodType == "MIXED") {
+				else if (periodType === "MIXED") {
 					validationResults["REQ_PE_MIXED"].issues.push([req.name, req.pe.join(",")]);
 				}
 				else {
@@ -242,7 +243,7 @@
 			for (var ind of indicatorpTypes[allPtypes[i]]) {
 				for (var j = i + 1; j < allPtypes.length; j++) {
 					for (var otherInd of indicatorpTypes[allPtypes[j]]) {
-						if (ind == otherInd) {
+						if (ind === otherInd) {
 							validationResults["REQ_IND_PERIOD_CONFLICT"].issues.push([indicatorName(ind), ind, requestsWithIndicator(ind).join(", ")]);
 						}
 					}
@@ -271,7 +272,10 @@
 		for (var ex of exchanges) {
 			for (var req of ex.source.requests) {
 				if (req.dx.length != uniqueEntries(req.dx).length) {
-					validationResults["REQ_IND_DUPLICATED"].issues.push([req.name]);
+					const dxs = req.dx;
+					const getDups = dxs => dxs.filter((item, index) => dxs.indexOf(item) !== index);
+					const duplicated_ds = getDups(req.dx);
+					validationResults["REQ_IND_DUPLICATED"].issues.push([req.name, duplicated_ds.join(", ")]);
 				}
 			}
 		}
@@ -372,9 +376,9 @@
 			(attributeValue) => attributeValue.attribute.id === "hpe7LiGDgvo"
 		);
 
-		const ou_is_configured =  iso3_codes.includes(root_orgunit.code) || iso3_codes.includes(attributeValue.value);
+		const ou_is_configured = iso3_codes.includes(root_orgunit.code) || iso3_codes.includes(attributeValue.value);
 
-		if(!ou_is_configured) {
+		if (!ou_is_configured) {
 			validationResults["ORGUNIT_CODE"].issues.push([root_orgunit.name, root_orgunit.code, attributeValue.value]);
 		}
 	}
@@ -386,22 +390,22 @@
 	//Get name of indicator from id
 	function indicatorName(id) {
 		for (var ind of indicators) {
-			if (ind.id == id) return ind.name;
+			if (ind.id === id) return ind.name;
 		}
 		return "UNKNOWN";
 	}
 
 	function indicatorCode(id) {
 		for (var ind of indicators) {
-			if (ind.id == id) return ind.code;
+			if (ind.id === id) return ind.code;
 		}
 		return "UNKNOWN";
 	}
 
 	//Get human readable numerator
-	function indicatorNumeratorExpressionDescription(id){
+	function indicatorNumeratorExpressionDescription(id) {
 		for (var ind of updatedIndicators) {
-			if (ind.id == id) return ind.numerator;
+			if (ind.id === id) return ind.numerator;
 		}
 		return "UNKNOWN";
 	}
@@ -412,13 +416,13 @@
 	function identifyPerioditype(pe) {
 		var periodType = false, latestPeriodType = false;
 		for (var p of pe) {
-			if (p.length == 4 || p.endsWith("_YEARS") || p.endsWith("_YEAR")) {
+			if (p.length === 4 || p.endsWith("_YEARS") || p.endsWith("_YEAR")) {
 				latestPeriodType = "YEARLY";
 			}
-			else if (p.indexOf("Q") == 4 || p.endsWith("_QUARTERS") || p.endsWith("_QUARTER")) {
+			else if (p.indexOf("Q") === 4 || p.endsWith("_QUARTERS") || p.endsWith("_QUARTER")) {
 				latestPeriodType = "QUARTERLY";
 			}
-			else if (p.length == 6 || p.endsWith("_MONTHS") || p.endsWith("_MONTH")) {
+			else if (p.length === 6 || p.endsWith("_MONTHS") || p.endsWith("_MONTH")) {
 				latestPeriodType = "MONTHLY";
 			}
 			else {
@@ -452,7 +456,7 @@
 	//Get unique values from array of strings
 	function uniqueEntries(array) {
 		return $.grep(array, function (el, index) {
-			return index == $.inArray(el, array);
+			return index === $.inArray(el, array);
 		});
 	}
 
@@ -478,7 +482,7 @@
 		}
 		html = html + "</tbody></table></div>"
 		$("#result").append(html);
-		new DataTable("#summary", { "paging": false, "searching": false, order : [[1, 'asc']]  });
+		new DataTable("#summary", { "paging": false, "searching": false, order: [[1, 'asc']] });
 
 
 		//Make detailed tables, only if there are violations
@@ -504,7 +508,7 @@
 		var csv_data = [];
 		csv_data.push('"Code","Indicator name","Period type","Numerator"');
 		for (var pType in indicatorpTypes) {
-			for(var indicator in indicatorpTypes[pType]) {
+			for (var indicator in indicatorpTypes[pType]) {
 				let csvrow = [];
 				let indicatorId = indicatorpTypes[pType][indicator];
 				csvrow.push('"' + indicatorCode(indicatorId) + '"');
@@ -572,6 +576,7 @@
 
 	//Run through all validation checks
 	async function runValidation() {
+		$("#loading").show();
 		console.log("Starting validation");
 
 		//Get the stuff to validate
@@ -598,6 +603,7 @@
 		findTargetAPI();
 		validateRootOrgUnit();
 		validateOrgUnitCode();
+		$("#loading").hide();
 
 		printValidationResults();
 
@@ -612,10 +618,17 @@
 
 </script>
 
+
+
 <div>
 	<h1>GF ADEx configuration validation</h1>
-	<button type="button" onclick="configToCSV()">
-		Download Exchange Summary
-	</button>
-	<div id="result"></div>
+	<div id="loading">
+		<h1>Please wait while loading...</h1>
+		<img alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHdpZHRoPSI0MHB4IiBoZWlnaHQ9IjQwcHgiIHZpZXdCb3g9IjAgMCA0MCA0MCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3BhY2U9InByZXNlcnZlIiBzdHlsZT0iZmlsbC1ydWxlOmV2ZW5vZGQ7Y2xpcC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjEuNDE0MjE7IiB4PSIwcHgiIHk9IjBweCI+CiAgICA8ZGVmcz4KICAgICAgICA8c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWwogICAgICAgICAgICBALXdlYmtpdC1rZXlmcmFtZXMgc3BpbiB7CiAgICAgICAgICAgICAgZnJvbSB7CiAgICAgICAgICAgICAgICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDBkZWcpCiAgICAgICAgICAgICAgfQogICAgICAgICAgICAgIHRvIHsKICAgICAgICAgICAgICAgIC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoLTM1OWRlZykKICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KICAgICAgICAgICAgQGtleWZyYW1lcyBzcGluIHsKICAgICAgICAgICAgICBmcm9tIHsKICAgICAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDBkZWcpCiAgICAgICAgICAgICAgfQogICAgICAgICAgICAgIHRvIHsKICAgICAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKC0zNTlkZWcpCiAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAgICAgIHN2ZyB7CiAgICAgICAgICAgICAgICAtd2Via2l0LXRyYW5zZm9ybS1vcmlnaW46IDUwJSA1MCU7CiAgICAgICAgICAgICAgICAtd2Via2l0LWFuaW1hdGlvbjogc3BpbiAxLjVzIGxpbmVhciBpbmZpbml0ZTsKICAgICAgICAgICAgICAgIC13ZWJraXQtYmFja2ZhY2UtdmlzaWJpbGl0eTogaGlkZGVuOwogICAgICAgICAgICAgICAgYW5pbWF0aW9uOiBzcGluIDEuNXMgbGluZWFyIGluZmluaXRlOwogICAgICAgICAgICB9CiAgICAgICAgXV0+PC9zdHlsZT4KICAgIDwvZGVmcz4KICAgIDxnIGlkPSJvdXRlciI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0yMCwwQzIyLjIwNTgsMCAyMy45OTM5LDEuNzg4MTMgMjMuOTkzOSwzLjk5MzlDMjMuOTkzOSw2LjE5OTY4IDIyLjIwNTgsNy45ODc4MSAyMCw3Ljk4NzgxQzE3Ljc5NDIsNy45ODc4MSAxNi4wMDYxLDYuMTk5NjggMTYuMDA2MSwzLjk5MzlDMTYuMDA2MSwxLjc4ODEzIDE3Ljc5NDIsMCAyMCwwWiIgc3R5bGU9ImZpbGw6YmxhY2s7Ii8+CiAgICAgICAgPC9nPgogICAgICAgIDxnPgogICAgICAgICAgICA8cGF0aCBkPSJNNS44NTc4Niw1Ljg1Nzg2QzcuNDE3NTgsNC4yOTgxNSA5Ljk0NjM4LDQuMjk4MTUgMTEuNTA2MSw1Ljg1Nzg2QzEzLjA2NTgsNy40MTc1OCAxMy4wNjU4LDkuOTQ2MzggMTEuNTA2MSwxMS41MDYxQzkuOTQ2MzgsMTMuMDY1OCA3LjQxNzU4LDEzLjA2NTggNS44NTc4NiwxMS41MDYxQzQuMjk4MTUsOS45NDYzOCA0LjI5ODE1LDcuNDE3NTggNS44NTc4Niw1Ljg1Nzg2WiIgc3R5bGU9ImZpbGw6cmdiKDIxMCwyMTAsMjEwKTsiLz4KICAgICAgICA8L2c+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0yMCwzMi4wMTIyQzIyLjIwNTgsMzIuMDEyMiAyMy45OTM5LDMzLjgwMDMgMjMuOTkzOSwzNi4wMDYxQzIzLjk5MzksMzguMjExOSAyMi4yMDU4LDQwIDIwLDQwQzE3Ljc5NDIsNDAgMTYuMDA2MSwzOC4yMTE5IDE2LjAwNjEsMzYuMDA2MUMxNi4wMDYxLDMzLjgwMDMgMTcuNzk0MiwzMi4wMTIyIDIwLDMyLjAxMjJaIiBzdHlsZT0iZmlsbDpyZ2IoMTMwLDEzMCwxMzApOyIvPgogICAgICAgIDwvZz4KICAgICAgICA8Zz4KICAgICAgICAgICAgPHBhdGggZD0iTTI4LjQ5MzksMjguNDkzOUMzMC4wNTM2LDI2LjkzNDIgMzIuNTgyNCwyNi45MzQyIDM0LjE0MjEsMjguNDkzOUMzNS43MDE5LDMwLjA1MzYgMzUuNzAxOSwzMi41ODI0IDM0LjE0MjEsMzQuMTQyMUMzMi41ODI0LDM1LjcwMTkgMzAuMDUzNiwzNS43MDE5IDI4LjQ5MzksMzQuMTQyMUMyNi45MzQyLDMyLjU4MjQgMjYuOTM0MiwzMC4wNTM2IDI4LjQ5MzksMjguNDkzOVoiIHN0eWxlPSJmaWxsOnJnYigxMDEsMTAxLDEwMSk7Ii8+CiAgICAgICAgPC9nPgogICAgICAgIDxnPgogICAgICAgICAgICA8cGF0aCBkPSJNMy45OTM5LDE2LjAwNjFDNi4xOTk2OCwxNi4wMDYxIDcuOTg3ODEsMTcuNzk0MiA3Ljk4NzgxLDIwQzcuOTg3ODEsMjIuMjA1OCA2LjE5OTY4LDIzLjk5MzkgMy45OTM5LDIzLjk5MzlDMS43ODgxMywyMy45OTM5IDAsMjIuMjA1OCAwLDIwQzAsMTcuNzk0MiAxLjc4ODEzLDE2LjAwNjEgMy45OTM5LDE2LjAwNjFaIiBzdHlsZT0iZmlsbDpyZ2IoMTg3LDE4NywxODcpOyIvPgogICAgICAgIDwvZz4KICAgICAgICA8Zz4KICAgICAgICAgICAgPHBhdGggZD0iTTUuODU3ODYsMjguNDkzOUM3LjQxNzU4LDI2LjkzNDIgOS45NDYzOCwyNi45MzQyIDExLjUwNjEsMjguNDkzOUMxMy4wNjU4LDMwLjA1MzYgMTMuMDY1OCwzMi41ODI0IDExLjUwNjEsMzQuMTQyMUM5Ljk0NjM4LDM1LjcwMTkgNy40MTc1OCwzNS43MDE5IDUuODU3ODYsMzQuMTQyMUM0LjI5ODE1LDMyLjU4MjQgNC4yOTgxNSwzMC4wNTM2IDUuODU3ODYsMjguNDkzOVoiIHN0eWxlPSJmaWxsOnJnYigxNjQsMTY0LDE2NCk7Ii8+CiAgICAgICAgPC9nPgogICAgICAgIDxnPgogICAgICAgICAgICA8cGF0aCBkPSJNMzYuMDA2MSwxNi4wMDYxQzM4LjIxMTksMTYuMDA2MSA0MCwxNy43OTQyIDQwLDIwQzQwLDIyLjIwNTggMzguMjExOSwyMy45OTM5IDM2LjAwNjEsMjMuOTkzOUMzMy44MDAzLDIzLjk5MzkgMzIuMDEyMiwyMi4yMDU4IDMyLjAxMjIsMjBDMzIuMDEyMiwxNy43OTQyIDMzLjgwMDMsMTYuMDA2MSAzNi4wMDYxLDE2LjAwNjFaIiBzdHlsZT0iZmlsbDpyZ2IoNzQsNzQsNzQpOyIvPgogICAgICAgIDwvZz4KICAgICAgICA8Zz4KICAgICAgICAgICAgPHBhdGggZD0iTTI4LjQ5MzksNS44NTc4NkMzMC4wNTM2LDQuMjk4MTUgMzIuNTgyNCw0LjI5ODE1IDM0LjE0MjEsNS44NTc4NkMzNS43MDE5LDcuNDE3NTggMzUuNzAxOSw5Ljk0NjM4IDM0LjE0MjEsMTEuNTA2MUMzMi41ODI0LDEzLjA2NTggMzAuMDUzNiwxMy4wNjU4IDI4LjQ5MzksMTEuNTA2MUMyNi45MzQyLDkuOTQ2MzggMjYuOTM0Miw3LjQxNzU4IDI4LjQ5MzksNS44NTc4NloiIHN0eWxlPSJmaWxsOnJnYig1MCw1MCw1MCk7Ii8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" />
+	</div>
+	<div id="result">
+		<button type="button" onclick="configToCSV()">
+			Download Exchange Summary
+		</button>
+	</div>
 </div>
