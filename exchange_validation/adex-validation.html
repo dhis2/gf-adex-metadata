@@ -414,13 +414,13 @@
 	function identifyPerioditype(pe) {
 		var periodType = false, latestPeriodType = false;
 		for (var p of pe) {
-			if (p.match(/^\d{4}$/) || p.endsWith("_YEARS") || p.endsWith("_YEAR")) {
+			if (p.match(/^201[2-9]$/) || p.endsWith("_YEARS") || p.endsWith("_YEAR")) {
 				latestPeriodType = "YEARLY";
 			}
 			else if (p.match(/^201\dQ\d{1-4}/) || p.endsWith("_QUARTERS") || p.endsWith("_QUARTER")) {
 				latestPeriodType = "QUARTERLY";
 			}
-			else if (p.match(/^201[1-9][0-1][0-9]$/) || p.endsWith("_MONTHS") || p.endsWith("_MONTH")) {
+			else if (p.match(/^201[2-9][0-1][0-9]$/) || p.endsWith("_MONTHS") || p.endsWith("_MONTH")) {
 				latestPeriodType = "MONTHLY";
 			}
 			else {
