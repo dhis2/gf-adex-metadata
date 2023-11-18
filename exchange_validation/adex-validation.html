@@ -120,6 +120,12 @@
 			"headers": [{ "title": "Exchange name" }, { "title": "Target API" }],
 			"issues": []
 		},
+		"EX_BASIC_AUTH": {
+			"title": "GF ADEx exchanges should not use basic authentication.",
+			"instruction": "GF ADEx exchanges should used a personal access token instead of basic authentication.",
+			"headers": [{ "title": "Exchange name" }, { "title": "Username" }],
+			"issues": []
+		},
 		"REQ_ROOT_ORGUNIT": {
 			"title": "GF ADEx requests should be aggregated to the level 1 organisation unit.",
 			"instruction": "Check to to be sure there is only one organisation unit defined in the ou dimension",
@@ -219,7 +225,7 @@
 	function indicatorsCategorize() {
 
 		indicators.forEach(indicator => {
-			indicator.numerator === 0 ?
+			indicator.numerator.trim().match(/0/) ?
 				indicatorsUnconf[indicator.id] = indicator :
 				indicatorsConf[indicator.id] = indicator;
 		})
@@ -257,7 +263,7 @@
 				for (var j = i + 1; j < allPtypes.length; j++) {
 					for (var otherInd of indicatorpTypes[allPtypes[j]]) {
 						if (ind === otherInd) {
-							validationResults["REQ_IND_PERIOD_CONFLICT"].issues.push([indicatorName(ind), ind, requestsWithIndicator(ind).join(", ")]);
+							validationResults["REQ_IND_PERIOD_CONFLICT"].issues.push([getIndicatorAttributeFromID(ind,"name"), ind, requestsWithIndicator(ind).join(", ")]);
 						}
 					}
 				}
@@ -370,6 +376,14 @@
 		}
 	}
 
+	function findBasicAuth() {
+		for (var ex of exchanges) {
+			if (ex.target.api.hasOwnProperty("username")) {
+				validationResults["EX_BASIC_AUTH"].issues.push([ex.name, ex.target.api.username]);
+			}
+		}
+	}
+
 	function validateRootOrgUnit() {
 		const root_orgunit_uid = root_orgunit.id;
 		for (var ex of exchanges) {
@@ -396,26 +410,11 @@
 
 	//TODO? Compare ID/code/attributes with current master on GH?
 
+	//Get a simple attribute from an indicator
 
-
-	//Get name of indicator from id
-	function indicatorName(id) {
+	getIndicatorAttributeFromID = (id, attribute) => {
 		for (var ind of indicators) {
-			if (ind.id === id) return ind.name;
-		}
-		return "UNKNOWN";
-	}
-
-	function indicatorCode(id) {
-		for (var ind of indicators) {
-			if (ind.id === id) return ind.code;
-		}
-		return "UNKNOWN";
-	}
-
-	function indicatorShortName(id) {
-		for (var ind of indicators) {
-			if (ind.id === id) return ind.shortName;
+			if (ind.id === id) return ind[attribute];
 		}
 		return "UNKNOWN";
 	}
@@ -529,9 +528,9 @@
 			for (var indicator in indicatorpTypes[pType]) {
 				let csvrow = [];
 				let indicatorId = indicatorpTypes[pType][indicator];
-				csvrow.push('"' + indicatorCode(indicatorId) + '"');
-				csvrow.push('"' + indicatorShortName(indicatorId) + '"');
-				csvrow.push('"' + indicatorName(indicatorId) + '"');
+				csvrow.push('"' + getIndicatorAttributeFromID(indicatorId, "code") + '"');
+				csvrow.push('"' + getIndicatorAttributeFromID(indicatorId, "shortName") + '"');
+				csvrow.push('"' + getIndicatorAttributeFromID(indicatorId, name) + '"');
 				csvrow.push('"' + pType + '"');
 				csvrow.push('"' + indicatorNumeratorExpressionDescription(indicatorId) + '"');
 				csv_data.push(csvrow.join(','));
@@ -606,8 +605,12 @@
 		operands = await fetchDataElementOperands();
 		dataElements = await fetchDataElements();
 		updatedIndicators = replaceFormulasWithShortNames(indicators, operands, dataElements);
-		if (indicators && exchanges && root_orgunit) console.log("Fetched metadata.");
-		else return;
+		Promise.all([indicators, exchanges, root_orgunit, indicators, operands, dataElements])
+		.then(console.log("Fetched metadata.")).catch((err) => {
+			console.log(err);
+			return false;
+		});
+
 
 		indicatorsCategorize();
 		findDuplicatesInRequests();
@@ -620,24 +623,26 @@
 		findPublicAccess();
 		findWrongOutputIDScheme();
 		findTargetAPI();
+		findBasicAuth();
 		validateRootOrgUnit();
 		validateOrgUnitCode();
 		$("#loading").hide();
-
 		printValidationResults();
 
 		console.log("Finished validation");
+		return true;
 	}
 
-
-
 	$(document).ready(function () {
-		runValidation();
+		let validation_results = runValidation();
+		if (validation_results) {}
+		else {
+			$("#loading").hide();
+			$("#result").append("<h2>Could not fetch metadata</h2>");
+		}
 	});
 
 </script>
-
-
 
 <div>
 	<h1>GF ADEx configuration validation</h1>
