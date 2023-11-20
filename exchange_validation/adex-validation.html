@@ -587,14 +587,14 @@
 		document.body.removeChild(temp_link);
 	}
 
-	//Hack to deal with being inside the iframe
+	//Hack to deal with being inside the iframe. Maybe thre is a better way?
 	function getHostName() {
 		const url = new URL(dataElements.dataElements[0].href);
-		return url.protocol + "//" + url.hostname;
+		return window.parent.location.hostname;
 	}
 
 	function reportToPDF() {
-		console.log(getHostName());
+
 		const { jsPDF } = window.jspdf;
 		var doc = new jsPDF('portrait');
 		const current_time = new Date().toJSON();
@@ -616,7 +616,7 @@
 			}
 		}
 		doc.save("gf_adex_validation.pdf");
-        
+
 	}
 
 	function downloadObjectAsJson(exportObj,exportName) {
