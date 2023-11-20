@@ -564,7 +564,7 @@
 				let indicatorId = indicatorpTypes[pType][indicator];
 				csvrow.push('"' + getIndicatorAttributeFromID(indicatorId, "code") + '"');
 				csvrow.push('"' + getIndicatorAttributeFromID(indicatorId, "shortName") + '"');
-				csvrow.push('"' + getIndicatorAttributeFromID(indicatorId, name) + '"');
+				csvrow.push('"' + getIndicatorAttributeFromID(indicatorId, "name") + '"');
 				csvrow.push('"' + pType + '"');
 				csvrow.push('"' + indicatorNumeratorExpressionDescription(indicatorId) + '"');
 				csv_data.push(csvrow.join(','));
