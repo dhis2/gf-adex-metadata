@@ -108,6 +108,12 @@
 			"headers": [{ "title": "Exchange name" }],
 			"issues": []
 		},
+		"EX_USERGROUP_SHARING": {
+			"title": "GF ADEx exchanges should be shared with user groups.",
+			"instruction": "Provide at least one user group with access to the exchange.",
+			"headers": [{ "title": "Exchange name" }],
+			"issues": []
+		},
 		"REQ_OUTPUT_ID_SCHEME": {
 			"title": "GF ADEx requests should use the correct attribute output scheme",
 			"instruction": "GF ADEx requests should use the correct attribute output scheme (\"outputIdScheme\": \"attribute:nHzX73VyNun\")",
@@ -243,7 +249,7 @@
 
 		for (var ex of exchanges) {
 			for (var req of ex.source.requests) {
-				periodType = identifyPerioditype(req.pe);
+				const periodType = classifyPeriods(req.pe);
 				if (periodType === "UNKNOWN") {
 					validationResults["REQ_PE_UNKNOWN"].issues.push([req.name, req.pe.join(",")]);
 				}
@@ -263,7 +269,7 @@
 				for (var j = i + 1; j < allPtypes.length; j++) {
 					for (var otherInd of indicatorpTypes[allPtypes[j]]) {
 						if (ind === otherInd) {
-							validationResults["REQ_IND_PERIOD_CONFLICT"].issues.push([getIndicatorAttributeFromID(ind,"name"), ind, requestsWithIndicator(ind).join(", ")]);
+							validationResults["REQ_IND_PERIOD_CONFLICT"].issues.push([getIndicatorAttributeFromID(ind, "name"), ind, requestsWithIndicator(ind).join(", ")]);
 						}
 					}
 				}
@@ -274,8 +280,7 @@
 
 	//Reccomend to use relative period types
 	function findNonRelativePeriods() {
-		const relative_period_types = ["LAST_12_MONTHS", "LAST_4_QUARTERS", "LAST_YEAR", "THIS_YEAR"];
-
+		const relative_period_types = relativeQuarters.concat(relativeMonths,relativeYears);
 		for (var ex of exchanges) {
 			for (var req of ex.source.requests) {
 				if (req.pe.some(pe => !relative_period_types.includes(pe))) {
@@ -316,7 +321,7 @@
 	//Find configured indicators NOT in requests
 	function findConfiguredNotInRequests() {
 		for (var confInd in indicatorsConf) {
-			var found = false
+			var found = false;
 			for (var ex of exchanges) {
 				for (var req of ex.source.requests) {
 					if ($.inArray(confInd, req.dx) !== -1) found = true
@@ -354,6 +359,15 @@
 		for (var ex of exchanges) {
 			if (ex.sharing.public != "--------") {
 				validationResults["EX_PUBLIC_SHARING"].issues.push([ex.name]);
+			}
+		}
+	}
+
+	function findUserGroupAccess() {
+		for (var ex of exchanges) {
+			console.log("boo", ex.sharing.userGroupAccesses);
+			if (ex.sharing.userGroupAccesses?.length == undefined || ex.sharing.userGroupAccesses?.length == 0) {
+				validationResults["EX_USERGROUP_SHARING"].issues.push([ex.name]);
 			}
 		}
 	}
@@ -427,36 +441,58 @@
 		return "UNKNOWN";
 	}
 
-	//Figure out period type from request pe dimension
-	//Returns false is a mix of periodTypes are found
-	//Year, quarter, month, week supported - else false
-	function identifyPerioditype(pe) {
-		var periodType = false, latestPeriodType = false;
-		for (var p of pe) {
-			if (p.match(/^201[2-9]$/) || p.endsWith("_YEARS") || p.endsWith("_YEAR")) {
-				latestPeriodType = "YEARLY";
-			}
-			else if (p.match(/^201\dQ\d{1-4}/) || p.endsWith("_QUARTERS") || p.endsWith("_QUARTER")) {
-				latestPeriodType = "QUARTERLY";
-			}
-			else if (p.match(/^201[2-9][0-1][0-9]$/) || p.endsWith("_MONTHS") || p.endsWith("_MONTH")) {
-				latestPeriodType = "MONTHLY";
-			}
-			else {
-				findNonRelativePeriods()
-				console.log("Unknown period type: " + p);
-				return "UNKNOWN";
-			}
+	const relativeQuarters = ["THIS_QUARTER", "LAST_QUARTER", "QUARTERS_THIS_YEAR", "QUARTERS_LAST_YEAR", "LAST_4_QUARTERS"];
+	const relativeMonths = ["THIS_MONTH", "LAST_MONTH", "MONTHS_THIS_YEAR", "MONTHS_LAST_YEAR", "LAST_12_MONTHS"];
+	const relativeYears = ["LAST_YEAR", "THIS_YEAR"];
 
-			//First iteration only
-			if (!periodType) periodType = latestPeriodType;
+	const relativePeriodTypes = {
+		"MONTHLY": relativeMonths,
+		"QUARTERLY": relativeQuarters,
+		"YEARLY": relativeYears
+	}
 
-			//Return if periods are mixed
-			if (periodType != latestPeriodType) return "MIXED";
+	const fixedMonths = /^20[2-3][0-9][0-1][0-9]$/;
+	const fixedQuarters = /^202[0-9]Q[1-4]/;
+	const fixedYears = /^202[0-9]$/;
+
+	const fixedPeriodTypes = {
+		"MONTHLY": fixedMonths,
+		"QUARTERLY": fixedQuarters,
+		"YEARLY": fixedYears
+	}
+
+
+	function classifyPeriod(period) {
+
+		for (const [type, values] of Object.entries(relativePeriodTypes)) {
+			if (values.includes(period)) {
+				return {"RELATIVE" : type};
+			}
 		}
 
-		return periodType;
+		for (const [type_fixed, regex] of Object.entries(fixedPeriodTypes)) {
+			if (regex.test(period)) {
+				return {"FIXED": type_fixed};
+			}
+		}
+		return {"UNKNOWN" : "UNKNOWN"}; // If no match is found
 	}
+
+	function classifyPeriods(periods) {
+		const periodTypes = periods.map(period => classifyPeriod(period));
+		const uniquePeriodTypes = [...new Set(periodTypes.map(periodType => Object.values(periodType)[0]))];
+		//Unknown takes precedence
+		if (uniquePeriodTypes.some(periodType => periodType === "UNKNOWN")) {
+			return "UNKNOWN";
+		}
+		//Otherwise, if there are multiple types, it's mixed
+		if (uniquePeriodTypes.length > 1) {
+			return "MIXED";
+		}
+		//Otherwise, it's the only type
+		return uniquePeriodTypes[0];
+	}
+
 
 	//Return name of request(s) that a given indicator is included in
 	function requestsWithIndicator(indicatorId) {
@@ -505,8 +541,6 @@
 		//Make detailed tables, only if there are violations
 		for (var validationType in validationResults) {
 			var result = validationResults[validationType];
-
-
 			if (result.issues.length > 0) {
 				var html = "<h2>" + result.title + "</h2>";
 				html = html + "<p>" + result.instruction + "</p>";
@@ -606,10 +640,10 @@
 		dataElements = await fetchDataElements();
 		updatedIndicators = replaceFormulasWithShortNames(indicators, operands, dataElements);
 		Promise.all([indicators, exchanges, root_orgunit, indicators, operands, dataElements])
-		.then(console.log("Fetched metadata.")).catch((err) => {
-			console.log(err);
-			return false;
-		});
+			.then(console.log("Fetched metadata.")).catch((err) => {
+				console.log(err);
+				return false;
+			});
 
 
 		indicatorsCategorize();
@@ -621,6 +655,7 @@
 		findRequestPeriodInoncistenies();
 		findNonRelativePeriods();
 		findPublicAccess();
+		findUserGroupAccess();
 		findWrongOutputIDScheme();
 		findTargetAPI();
 		findBasicAuth();
@@ -635,7 +670,7 @@
 
 	$(document).ready(function () {
 		let validation_results = runValidation();
-		if (validation_results) {}
+		if (validation_results) { }
 		else {
 			$("#loading").hide();
 			$("#result").append("<h2>Could not fetch metadata</h2>");
