@@ -732,7 +732,7 @@
 		dataElements = await fetchDataElements();
 		dataSets = await fetchDataSets();
 		
-		Promise.all([systemInfo, exchanges, root_orgunit, indicators, operands, dataElements])
+		Promise.all([systemInfo, exchanges, root_orgunit, indicators, operands, dataElements, dataSets])
 			.then(console.log("Fetched metadata.")).catch((err) => {
 				console.log(err);
 				return false;
