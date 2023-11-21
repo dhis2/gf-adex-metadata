@@ -13,6 +13,7 @@
 	var dataElements = false;
 	var updatedIndicators = false;
 	var systemInfo = false;
+	var dataSets = false;
 	var indicatorsConf = {};
 	var indicatorsUnconf = {};
 
@@ -218,7 +219,7 @@
 
 	//Get the data elements when used directly in formulas
 	async function fetchDataElements() {
-		data = await d2Fetch("dataElements.json?fields=id,shortName,href&paging=false");
+		data = await d2Fetch("dataElements.json?fields=id,shortName&paging=false");
 		if (!data || data.dataElements.length === 0) {
 			console.log("No data elements could be found.");
 			return false;
@@ -238,6 +239,17 @@
 			return data;
 		}
 
+	}
+
+	async function fetchDataSets() {
+		data = await d2Fetch("dataSets.json?fields=id,name&paging=false");
+		if (!data || data.dataSets.length === 0) {
+			console.log("No data sets could be found.");
+			return false;
+		}
+		else {
+			return data;
+		}
 	}
 
 	//Separate configured and non-configured indicators
@@ -654,17 +666,25 @@
 	//Replace formulas with short names
 	//Limited to only certain types of indicator which use
 	//either data elements or data element operands in the numerator
-	function replaceFormulasWithShortNames(indicators, operands, dataElements) {
+	function replaceFormulasWithShortNames(indicators, operands, dataElements,dataSets) {
 		const totalsMap = {};
 
 		dataElements.dataElements.forEach(dataElement => {
 			totalsMap[dataElement.id] = dataElement.shortName;
 		});
 
+		console.log("totalsmap is",totalsMap);
 		const detailsMap = {};
 		operands.dataElementOperands.forEach(operand => {
 			detailsMap[operand.dimensionItem] = operand.shortName;
 		});
+
+		const dataSetMap = {};
+		dataSets.dataSets.forEach(dataSet => {
+			dataSetMap[dataSet.id] = dataSet.name;
+		});
+
+		console.log("datasetmap is",dataSetMap);
 
 		indicators.forEach(indicator => {
 			if (indicator.numerator) {
@@ -674,6 +694,10 @@
 				indicator.numerator = indicator.numerator.replace(/(\w+)/g, match => {
 					return totalsMap[match] || match;
 				});
+
+				indicator.numerator = indicator.numerator.replace(/(\w+)/g, match => {
+					return dataSetMap[match] || match;
+				});
 			}
 
 			if (indicator.denominator) {
@@ -682,6 +706,10 @@
 				});
 				indicator.denominator = indicator.denominator.replace(/(\w+)/g, match => {
 					return totalsMap[match] || match;
+				});
+
+				indicator.denominator = indicator.denominator.replace(/(\w+)/g, match => {
+					return dataSetMap[match] || match;
 				});
 			}
 		});
@@ -702,14 +730,16 @@
 		indicators = await fetchIndicators();
 		operands = await fetchDataElementOperands();
 		dataElements = await fetchDataElements();
-		updatedIndicators = replaceFormulasWithShortNames(indicators, operands, dataElements);
+		dataSets = await fetchDataSets();
+		
 		Promise.all([systemInfo, exchanges, root_orgunit, indicators, operands, dataElements])
 			.then(console.log("Fetched metadata.")).catch((err) => {
 				console.log(err);
 				return false;
 			});
 
-
+		updatedIndicators = replaceFormulasWithShortNames(indicators, operands, dataElements, dataSets);
+		
 		indicatorsCategorize();
 		findDuplicatesInRequests();
 		findUnconfiguredInRequests();
