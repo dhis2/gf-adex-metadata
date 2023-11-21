@@ -586,32 +586,32 @@
 		downloadCSVFile(csv_data);
 	}
 
-	function downloadCSVFile(csv_data) {
-		CSVFile = new Blob([csv_data], {
-			type: "text/csv"
-		});
-		var temp_link = document.createElement('a');
-		temp_link.download = "gf_indicator_config.csv";
-		var url = window.URL.createObjectURL(CSVFile);
-		temp_link.href = url;
-		temp_link.style.display = "none";
-		document.body.appendChild(temp_link);
-		temp_link.click();
-		document.body.removeChild(temp_link);
-	}
+		function downloadCSVFile(csv_data) {
+			CSVFile = new Blob([csv_data], {
+				type: "text/csv"
+			});
+			var temp_link = document.createElement('a');
+			temp_link.download = "gf_indicator_config.csv";
+			var url = window.URL.createObjectURL(CSVFile);
+			temp_link.href = url;
+			temp_link.style.display = "none";
+			document.body.appendChild(temp_link);
+			temp_link.click();
+			document.body.removeChild(temp_link);
+		}
 
-	const addFooters = doc => {
-  const pageCount = doc.internal.getNumberOfPages()
+		const addFooters = doc => {
+			const pageCount = doc.internal.getNumberOfPages()
 
-  doc.setFont('helvetica', 'italic')
-  doc.setFontSize(8)
-  for (var i = 1; i <= pageCount; i++) {
-    doc.setPage(i)
-    doc.text('Page ' + String(i) + ' of ' + String(pageCount), doc.internal.pageSize.width / 2, 287, {
-      align: 'center'
-    })
-  }
-}
+			doc.setFont('helvetica', 'italic')
+			doc.setFontSize(8)
+			for (var i = 1; i <= pageCount; i++) {
+				doc.setPage(i)
+				doc.text('Page ' + String(i) + ' of ' + String(pageCount), doc.internal.pageSize.width / 2, 287, {
+					align: 'center'
+				})
+			}
+		}
 
 	function reportToPDF() {
 
@@ -619,7 +619,7 @@
 		var doc = new jsPDF('portrait');
 		const current_time = new Date().toJSON();
 		doc.text("ADEX Validation Report", 20, 20);
-		doc.text("Hostname: " + systemInfo.instanceBaseUrl , 20, 30);
+		doc.text("Hostname: " + systemInfo.instanceBaseUrl, 20, 30);
 		doc.text("DHIS2 Version: " + systemInfo.version, 20, 40);
 		doc.text("Generated on: " + current_time, 20, 50);
 		doc.addPage();
@@ -627,29 +627,29 @@
 		for (var validationType in validationResults) {
 			var result = validationResults[validationType];
 			if (result.issues.length > 0) {
-        doc.text(result.title, 10, 10);
-		doc.autoTable({
-		  head: [result.headers.map(header => header.title)],
-		  body: result.issues,
-		  startY: 30
-		});
-		doc.addPage();
+				doc.text(result.title, 10, 10);
+				doc.autoTable({
+					head: [result.headers.map(header => header.title)],
+					body: result.issues,
+					startY: 30
+				});
+				doc.addPage();
 			}
 		}
 		addFooters(doc);
-     doc.save("gf_adex_validation.pdf");
+		doc.save("gf_adex_validation.pdf");
 
 	}
 
-	function downloadObjectAsJson(exportObj,exportName) {
-	var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
-    var downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href",     dataStr);
-    downloadAnchorNode.setAttribute("download", exportName + ".json");
-    document.body.appendChild(downloadAnchorNode); // required for firefox
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
-	}
+		function downloadObjectAsJson(exportObj, exportName) {
+			var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+			var downloadAnchorNode = document.createElement('a');
+			downloadAnchorNode.setAttribute("href", dataStr);
+			downloadAnchorNode.setAttribute("download", exportName + ".json");
+			document.body.appendChild(downloadAnchorNode); // required for firefox
+			downloadAnchorNode.click();
+			downloadAnchorNode.remove();
+		}
 
 	//Replace formulas with short names
 	//Limited to only certain types of indicator which use
@@ -757,11 +757,11 @@
 					Download Exchange Summary
 				</button>
 			</td>
-			<!-- <td>
-				<button type="button" onclick="downloadObjectAsJson(validationResults,'adex_report')">
-					Download Report (JSON)
+			<td>
+				<button type="button" onclick="downloadObjectAsJson(exchanges,'gf_adex_exchanges')">
+					Download GF Exchanges (JSON)
 				</button>
-			</td> -->
+			</td>
 			<td>
 				<button type="button" onclick="reportToPDF()">
 					Download Report (PDF)
