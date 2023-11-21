@@ -673,7 +673,6 @@
 			totalsMap[dataElement.id] = dataElement.shortName;
 		});
 
-		console.log("totalsmap is",totalsMap);
 		const detailsMap = {};
 		operands.dataElementOperands.forEach(operand => {
 			detailsMap[operand.dimensionItem] = operand.shortName;
@@ -683,8 +682,6 @@
 		dataSets.dataSets.forEach(dataSet => {
 			dataSetMap[dataSet.id] = dataSet.name;
 		});
-
-		console.log("datasetmap is",dataSetMap);
 
 		indicators.forEach(indicator => {
 			if (indicator.numerator) {
