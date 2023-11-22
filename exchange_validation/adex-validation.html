@@ -145,6 +145,12 @@
 			"instruction": "Check to be sure that you have defined either the code or attribute for your country with the correct ISO3 code",
 			"headers": [{ "title": "Organisation unit" }, { "title": "Code" }, { "title": "Attribute" }],
 			issues: []
+		},
+		"EX_TARGET_OU_SCHEME" : {
+			"title": "GF ADEx exchanges should use the correct target organisation unit scheme.",
+			"instruction": "GF ADEX exchanges should use \"CODE\" as the target organisation unit scheme.",
+			"headers": [{ "title": "Exchange name" }, { "title": "Target OU scheme" }],
+			issues: []
 		}
 	}
 
@@ -446,6 +452,15 @@
 		}
 	}
 
+	function validateExchangeTargetOuScheme() {
+		for (var ex of exchanges) {
+			const targetOuScheme = ex.target.request.orgUnitIdScheme ?? "UNKNOWN";
+			if (targetOuScheme != "CODE") {
+				validationResults["EX_TARGET_OU_SCHEME"].issues.push([ex.name, targetOuScheme]);
+			}
+		}
+	}
+
 	//TODO? Compare ID/code/attributes with current master on GH?
 
 	//Get a simple attribute from an indicator
@@ -728,7 +743,7 @@
 		operands = await fetchDataElementOperands();
 		dataElements = await fetchDataElements();
 		dataSets = await fetchDataSets();
-		
+
 		Promise.all([systemInfo, exchanges, root_orgunit, indicators, operands, dataElements, dataSets])
 			.then(console.log("Fetched metadata.")).catch((err) => {
 				console.log(err);
@@ -736,7 +751,7 @@
 			});
 
 		updatedIndicators = replaceFormulasWithShortNames(indicators, operands, dataElements, dataSets);
-		
+
 		indicatorsCategorize();
 		findDuplicatesInRequests();
 		findUnconfiguredInRequests();
@@ -752,6 +767,7 @@
 		findBasicAuth();
 		validateRootOrgUnit();
 		validateOrgUnitCode();
+		validateExchangeTargetOuScheme();
 		$("#loading").hide();
 		printValidationResults();
 
