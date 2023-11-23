@@ -59,7 +59,7 @@
 		"REQ_IND_UNCONF": {
 			"title": "Requests with indicators that are not configured",
 			"instruction": "GF ADEx requests that include indicators that are not configured, meaning their numerator is 0. These indicators should either configured, or removed from the request.",
-			"headers": [{ "title": "Request" }, { "title": "Indicator name" }, { "title": "Indicator id" }],
+			"headers": [{ "title": "Request" }, { "title": "Indicator name" }, { "title": "Indicator id" }, {"numerator": "Numerator"}],
 			"issues": []
 		},
 		"REQ_IND_NONGF": {
@@ -262,7 +262,7 @@
 	function indicatorsCategorize() {
 
 		indicators.forEach(indicator => {
-			indicator.numerator.trim().match(/0/) ?
+			indicator.numerator.trim() == "0" ?
 				indicatorsUnconf[indicator.id] = indicator :
 				indicatorsConf[indicator.id] = indicator;
 		})
@@ -341,7 +341,12 @@
 			for (var req of ex.source.requests) {
 				for (var ind of req.dx) {
 					if (indicatorsUnconf[ind]) {
-						validationResults["REQ_IND_UNCONF"].issues.push([req.name, indicatorsUnconf[ind].name, ind]);
+						let numerator_preview = indicatorsUnconf[ind].numerator;
+						//Just show a few characters here if not zero to allow further investiation
+						if (numerator_preview != "0") {
+							numerator_preview = numerator_preview.substring(0, 50) + "...";
+						}
+						validationResults["REQ_IND_UNCONF"].issues.push([req.name, indicatorsUnconf[ind].name, ind,numerator_preview ]);
 					}
 				}
 			}
@@ -380,7 +385,7 @@
 	//Find indicators with denominator != 1
 	function findChangedDenominators() {
 		for (var ind of indicators) {
-			if (ind.denominator != "1") {
+			if (ind.denominator.trim() != "1") {
 				validationResults["IND_DENOM_CHANGED"].issues.push([ind.name, ind.id, ind.denominator]);
 			}
 		}
