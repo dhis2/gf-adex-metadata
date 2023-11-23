@@ -24,6 +24,7 @@
 	};
 
 	var exchanges = false;
+
 	const iso3_codes = ["AFG", "ALB", "AGO", "ARM", "AZE", "BGD", "BLR", "BLZ",
 		"BEN", "BTN", "BOL", "BWA", "BFA", "BDI", "CPV", "KHM", "CMR", "CAF", "TCD",
 		"COL", "COM", "COG", "COD", "CRI", "CIV", "CUB", "DJI", "DOM", "ECU", "EGY",
@@ -416,7 +417,7 @@
 
 	function findUserGroupAccess() {
 		for (var ex of exchanges) {
-			if (ex.sharing.userGroupAccesses?.length == undefined || ex.sharing.userGroupAccesses?.length == 0) {
+			if (ex.userGroupAccesses?.length == undefined || ex.userGroupAccesses?.length == 0) {
 				validationResults["EX_USERGROUP_SHARING"].issues.push([ex.name]);
 			}
 		}
