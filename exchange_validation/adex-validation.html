@@ -173,7 +173,12 @@
 			"instruction": "GF ADEX exchanges should use \"CODE\" as the target organisation unit scheme.",
 			"headers": [{ "title": "Exchange name" }, { "title": "Target OU scheme" }],
 			issues: []
-		}
+		},
+		"EX_TARGET_ID_SCHEME" : {
+			"title": "GF ADEx exchanges should use the correct target ID scheme.",
+			"instruction": "GF ADEX exchanges should use \"UID\" as the target ID scheme.",
+			"headers": [{ "title": "Exchange name" }, { "title": "Target ID scheme" }],
+			issues: [] }
 	}
 
 
@@ -584,6 +589,14 @@
 
 	}
 
+	function checkTargetOutputIdScheme() {
+		for (var ex of exchanges) {
+			if (ex.target.request.idScheme != "UID") {
+				validationResults["EX_TARGET_ID_SCHEME"].issues.push([ex.name, ex.target.request.idScheme]);
+			}
+		}
+	}
+
 	//Get unique values from array of strings
 	function uniqueEntries(array) {
 		return $.grep(array, function (el, index) {
@@ -809,6 +822,7 @@
 		validateRootOrgUnit();
 		validateOrgUnitCode();
 		validateExchangeTargetOuScheme();
+		checkTargetOutputIdScheme();
 		$("#loading").hide();
 		printValidationResults();
 
