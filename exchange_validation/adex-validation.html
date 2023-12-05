@@ -50,19 +50,34 @@
 		"[GFADEX]_dy3MD8X9erl_tW9iYwweSjv"
 	]
 
+	class ValidationResult {
+		constructor(title, instruction, headers) {
+			this.title = title;
+			this.instruction = instruction;
+			this.headers = headers;
+			this.issues = [];
+		}
+	}
+
+	class RequestsDuplicatedIndicators extends ValidationResult {
+		constructor() {
+			super("Requests with duplicate indicators",
+				"GF ADEx requests with the same indicator repeated in the `dx` section. Resolve the duplicates listed below.",
+				[{ "title": "Request" }, { "title": "Duplicates" }]);
+		}
+	}
+
+	class RequestsInidicatorsNotConfigured extends ValidationResult {
+		constructor() {
+			super("Requests with indicators that are not configured",
+				"GF ADEx requests that include indicators that are not configured, meaning their numerator is 0. These indicators should either configured, or removed from the request.",
+				[{ "title": "Request" }, { "title": "Indicator name" }, { "title": "Indicator id" }, {"numerator": "Numerator"}]);
+		}
+	}
+
 	var validationResults = {
-		"REQ_IND_DUPLICATED": {
-			"title": "Requests with duplicate indicators",
-			"instruction": "GF ADEx requests with the same indicator repeated in the `dx` section. Resolve the duplicates listed below.",
-			"headers": [{ "title": "Request" }, { "title": "Duplicates" }],
-			"issues": []
-		},
-		"REQ_IND_UNCONF": {
-			"title": "Requests with indicators that are not configured",
-			"instruction": "GF ADEx requests that include indicators that are not configured, meaning their numerator is 0. These indicators should either configured, or removed from the request.",
-			"headers": [{ "title": "Request" }, { "title": "Indicator name" }, { "title": "Indicator id" }, {"numerator": "Numerator"}],
-			"issues": []
-		},
+		"REQ_IND_DUPLICATED": new RequestsDuplicatedIndicators(),
+		"REQ_IND_UNCONF": new RequestsInidicatorsNotConfigured(),
 		"REQ_IND_NONGF": {
 			"title": "Requests with other indicators",
 			"instruction": "GF ADEx requests with indicators that are not GF ADEx indicators (i.e. do not have [GFADEX] prefix). Only GF ADEx indicators should be included in requests.",
@@ -158,25 +173,33 @@
 			"instruction": "GF ADEX exchanges should use \"CODE\" as the target organisation unit scheme.",
 			"headers": [{ "title": "Exchange name" }, { "title": "Target OU scheme" }],
 			issues: []
-		}
+		},
+		"EX_TARGET_ID_SCHEME" : {
+			"title": "GF ADEx exchanges should use the correct target ID scheme.",
+			"instruction": "GF ADEX exchanges should use \"UID\" as the target ID scheme.",
+			"headers": [{ "title": "Exchange name" }, { "title": "Target ID scheme" }],
+			issues: [] }
 	}
 
 
 	//Fetch async from API
 	async function d2Fetch(endpoint) {
 		return new Promise(function (resolve, reject) {
-			$.ajax({
-				"type": "GET",
-				"url": baseUrl + endpoint,
-				"dataType": "json",
-				"success": function (data) {
-					resolve(data);
+			fetch(baseUrl + endpoint, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					credentials: 'include'
 				},
-				"error": function (err) {
-					console.log(err)
-					reject(false);
-				}
-			});
+			})
+				.then(response => response.json())
+				.then(data => {
+					resolve(data);
+				})
+				.catch(error => {
+					console.error('Error fetching data:', error, baseUrl + endpoint);
+					reject(error);
+				});
 		});
 	}
 
@@ -566,6 +589,14 @@
 
 	}
 
+	function checkTargetOutputIdScheme() {
+		for (var ex of exchanges) {
+			if (ex.target.request.idScheme != "UID") {
+				validationResults["EX_TARGET_ID_SCHEME"].issues.push([ex.name, ex.target.request.idScheme]);
+			}
+		}
+	}
+
 	//Get unique values from array of strings
 	function uniqueEntries(array) {
 		return $.grep(array, function (el, index) {
@@ -766,7 +797,8 @@
 		dataSets = await fetchDataSets();
 
 		Promise.all([systemInfo, exchanges, root_orgunit, indicators, operands, dataElements, dataSets])
-			.then(console.log("Fetched metadata.")).catch((err) => {
+			.then(console.log("Fetched metadata."))
+			.catch((err) => {
 				console.log(err);
 				return false;
 			});
@@ -790,6 +822,7 @@
 		validateRootOrgUnit();
 		validateOrgUnitCode();
 		validateExchangeTargetOuScheme();
+		checkTargetOutputIdScheme();
 		$("#loading").hide();
 		printValidationResults();
 
