@@ -50,6 +50,97 @@
 		"[GFADEX]_dy3MD8X9erl_tW9iYwweSjv"
 	]
 
+		const allowed_implementer_types = [
+			{
+				"name": "Governmental Organization",
+				"id": "HXEkCx9uasx"
+			},
+			{
+				"name": "United Nations Development Programme",
+				"id": "ddY6CWfWwoX"
+			},
+			{
+				"name": "Local Private Sector",
+				"id": "WqYrHai9gYJ"
+			},
+			{
+				"name": "Other Multilateral Organization",
+				"id": "KuPZumnAA3k"
+			},
+			{
+				"name": "Faith Based Organization",
+				"id": "izUdgJ2ixiI"
+			},
+			{
+				"name": "Ministry of Finance",
+				"id": "ldI7bQZyhIM"
+			},
+			{
+				"name": "Other Entity",
+				"id": "buBCzm4Q9py"
+			},
+			{
+				"name": "Other Governmental Organization",
+				"id": "iCCfsjluy7r"
+			},
+			{
+				"name": "International Private Sector",
+				"id": "S2So8oWX78q"
+			},
+			{
+				"name": "International Faith Based Organization",
+				"id": "jK7wYMb7ZcV"
+			},
+			{
+				"name": "Other Community Sector Entity",
+				"id": "BBHddcb1ZVr"
+			},
+			{
+				"name": "United Nations Organization",
+				"id": "Kg346mmQUxe"
+			},
+			{
+				"name": "International Non-Governmental Organization",
+				"id": "nLQuKoZXttR"
+			},
+			{
+				"name": "Ministry of Health",
+				"id": "DxDJklvqL7Q"
+			},
+			{
+				"name": "NGO/CBO/Academic",
+				"id": "MXeOmeI8Y36"
+			},
+			{
+				"name": "Civil Society Organization",
+				"id": "FKpadYSM48G"
+			},
+			{
+				"name": "Local Faith Based Organization",
+				"id": "yl4h3HuXlfE"
+			},
+			{
+				"name": "Multilateral Organization",
+				"id": "FBS4envxo55"
+			},
+			{
+				"name": "Community led organizations",
+				"id": "pZZmYvr4qBh"
+			},
+			{
+				"name": "Private Sector",
+				"id": "c9sd0PVzL1G"
+			},
+			{
+				"name": "Local Non-Governmental Organization",
+				"id": "VPLzNdhNfmj"
+			},
+			{
+				"name": "Other Organization",
+				"id": "bvKLmM9thFG"
+			}
+		]
+
 	class ValidationResult {
 		constructor(title, instruction, headers) {
 			this.title = title;
@@ -124,6 +215,12 @@
 			"title": "Indicators with modified decimals",
 			"instruction": "GF ADEx indicators where the number of decimals has been changed from '0'. This should be reviewed, as all GF ADEx indicators should be reported as whole integers.",
 			"headers": [{ "title": "Indicator name" }, { "title": "Indicator id" }, { "title": "Decimals" }],
+			"issues": []
+		},
+		"IND_IMPLEMENTER_TYPE": {
+			"title": "Indicators with incorrect attribute for implementer type",
+			"instruction": "GF ADEx indicators where the implementer type attribute is not set to a correct value. Consult the documentation for a list of possible values.",
+			"headers": [{ "title": "Indicator name" }, { "title": "Indicator id" }, { "title": "Implementer type" }],
 			"issues": []
 		},
 		"EX_PUBLIC_SHARING": {
@@ -206,7 +303,7 @@
 
 	//Fetch the GF indicators (based on [GFADEX] code in name)
 	async function fetchIndicators() {
-		data = await d2Fetch("indicators.json?filter=name:$like:[GFADEX]&fields=id,name,shortName,code,numerator,denominator,decimals&paging=false");
+		data = await d2Fetch("indicators.json?filter=name:$like:[GFADEX]&fields=id,name,shortName,code,numerator,denominator,decimals,aggregateExportAttributeOptionCombo&paging=false");
 		if (!data || data.indicators.length === 0) {
 			console.log("No GF ADEx indicators found");
 			return false;
@@ -425,6 +522,15 @@
 		for (var ind of indicators) {
 			if (ind.decimals != 0) {
 				validationResults["IND_DECIMALS_CHANGED"].issues.push([ind.name, ind.id, ind.decimals]);
+			}
+		}
+	}
+
+	//Find implmenter types which are not in the list of allowed values
+	function findInvalidImplementerTypes() {
+		for (var ind of indicators) {
+			if (!allowed_implementer_types.some(allowed_type => allowed_type.id === ind.aggregateExportAttributeOptionCombo)) {
+				validationResults["IND_IMPLEMENTER_TYPE"].issues.push([ind.name, ind.id, ind.aggregateExportAttributeOptionCombo]);
 			}
 		}
 	}
@@ -812,6 +918,7 @@
 		findNonGFInRequests();
 		findChangedDenominators();
 		findChangedDecimals();
+		findInvalidImplementerTypes();
 		findRequestPeriodInoncistenies();
 		findNonRelativePeriods();
 		findPublicAccess();
