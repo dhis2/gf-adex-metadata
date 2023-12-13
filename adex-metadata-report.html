@@ -1,0 +1,111 @@
+<div style="padding:10px 0"></div>
+
+
+<head>
+    <title>Data Exchange Overview</title>
+</head>
+
+<body>
+    <h1>ADEX Overview</h1>
+    <div id="has_duplicates"></div>
+
+    <script>
+
+
+        function hasDuplicateItems(arr) {
+
+            const uniqueElements = new Set();
+            for (const str of arr) {
+                if (uniqueElements.has(str)) {
+                    return true;
+                }
+                uniqueElements.add(str);
+            }
+            return false;
+        }
+
+        function hasInvalidPeriodType(arr) {
+
+            const validPeriodTypes = new Set(["LAST_12_MONTHS", "LAST_4_QUARTERS", "LAST_YEAR", "THIS_YEAR"]);
+            for (const str of arr) {
+                if (!validPeriodTypes.has(str)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+    function extractDxObjects(data) {
+    const dxArray = [];
+
+    for (const item of data.source.requests) {
+        if (item.dx && Array.isArray(item.dx)) {
+            dxArray.push(...item.dx);
+        }
+    }
+
+    return dxArray;
+}
+
+function filterDuplicateElements(arr) {
+    return arr.filter((item, index, self) => self.indexOf(item) === index);
+}
+
+
+        function analyzeSourceRequests(data) {
+
+            const regexPattern = /globalfund/;
+
+            const filteredObjects = data.aggregateDataExchanges.filter(obj => {
+                const targetUrl = obj.target.api.url;
+                return regexPattern.test(targetUrl);
+            });
+            let msg = "";
+            let k;
+
+            for (k = 0; k < filteredObjects.length; k++) {
+
+                let requests = filteredObjects[k].source.requests;
+                msg = msg + "<h2>" + filteredObjects[k].name + "</h2><br>";
+                msg = msg + "<p>Duplicated dx items across requests: " + extractDuplicateDxElements(filteredObjects[k]) + "</p>";
+                /*Loop through each request and check for duplicates within the request*/
+                let i, j;
+                for (i = 0; i < requests.length; i++) {
+                    let request = requests[i];
+                    msg = msg + "<h3>" +
+                        request.name +
+                        "</h3><p>" +
+                        "Duplicated dx items in request: " +
+                        hasDuplicateItems(request.dx) + "</p>";
+
+                    msg = msg + "<p>Invalid period types: " +
+                        hasInvalidPeriodType(request.pe) + "</p>";
+
+                }
+                return msg;
+            };
+
+        }
+
+        $(document).ready(function () {
+
+            let adex_config = $.ajax({
+                url: "../api/aggregateDataExchanges?fields=*",
+                method: "GET",
+                success: function (data) {
+                    return (data);
+                },
+                error: function (xhr, status, error) {
+                    // Handle any errors that occur
+                    $("#errored_out").html("<p>Error:</p><p>Status: " + status + "</p><p>Error: " + error + "</p>");
+                }
+            });
+
+            adex_config.done(function (msg) {
+                $("#has_duplicates").html(analyzeSourceRequests(msg));
+            });
+        });
+    </script>
+</body>
+
+</html>
