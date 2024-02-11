@@ -6657,11 +6657,17 @@
                         if (!indicator.numeratorPeriodType) {
                             indicator.numeratorPeriodType = [];
                         }
-                        indicator.numeratorPeriodType.push(configuredIndicator.periodType);
+                        const finalPeriodType = configuredIndicator.periodType ? configuredIndicator.periodType : "Not configured in any request.";
+                        indicator.numeratorPeriodType.push(finalPeriodType);
                         indicator.numeratorPeriodType = [...new Set(indicator.numeratorPeriodType)];
                     }
                 });
             });
+
+            if (indicator.denominator == "1" && indicator.numeratorConfigured) {
+                    indicator.denominatorConfigured = true;
+                    indicator.denominatorPeriodType = indicator.numeratorPeriodType;
+            }
 
             //Only run this if the denomiatorTerms is an array
             if (Array.isArray(indicator.denominatorTerms)) {
@@ -6705,10 +6711,13 @@
         //Add results to report
         function printIndicatorReport() {
 
+            //Arrange the indicators by alphabetical order
+            configuredGlobalFundIndicators.sort((a, b) => (a.shortName > b.shortName) ? 1 : -1);
+
             //Make summary
             var html = "<div id='summary_table'><h2>Configured Indicators</h2>";
             html = html + "<table id='summary' class='display' width='100%'>";
-            html = html + "<thead><tr><th>Inidcator</th><th>Numerator</th><th>Period Type</th><th>Denominator</th><th>Period type</th></tr></thead><tbody>";
+            html = html + "<thead><tr><th>Inidcator</th><th>Numerator configured</th><th>Period Type</th><th>Denominator configured</th><th>Period type</th></tr></thead><tbody>";
             for (var i = 0; i < configuredGlobalFundIndicators.length; i++) {
                 var numeratorPeriodType = configuredGlobalFundIndicators[i].numeratorPeriodType ? configuredGlobalFundIndicators[i].numeratorPeriodType.join(", ") : "Not configured in any request.";
                 var denominatorPeriodType = configuredGlobalFundIndicators[i].denominatorPeriodType ? configuredGlobalFundIndicators[i].denominatorPeriodType.join(", ") : "Not configured in any request.";
@@ -6721,7 +6730,7 @@
             }
             html = html + "</tbody></table></div>"
             $("#result").append(html);
-            new DataTable("#summary", { "paging": false, "searching": false, order: [[1, 'asc']] });
+            new DataTable("#summary", { "paging": true, "searching": true, order: [[1, 'asc']] });
         }
 
         function configToCSV() {
