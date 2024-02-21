@@ -1,10 +1,10 @@
 <style type="text/css" media="screen">
 </style>
 
-<script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/2.0.0/js/dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script type="text/javascript" src="https://unpkg.com/jspdf-autotable@3.7.1/dist/jspdf.plugin.autotable.js"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="//cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css">
 </link>
 <script type="text/javascript">
 
@@ -6728,9 +6728,29 @@
                 html = html + "<td>" + (configuredGlobalFundIndicators[i].denominatorConfigured ? "Yes" : "No")
                 html = html + "<td>" + denominatorPeriodType + "</td></tr>";
             }
-            html = html + "</tbody></table></div>"
+            html = html + "</tbody><tfoot><tr><th>Indicator</th><th>Numerator configured</th><th>Period Type</th><th>Denominator configured</th><th>Period type</th></tr></tfoot></table></div>"
             $("#result").append(html);
-            new DataTable("#summary", { "paging": true, "searching": true, order: [[1, 'asc']] });
+            new DataTable("#summary", {
+                initComplete: function () {
+                    this.api()
+                        .columns()
+                        .every(function () {
+                            let column = this;
+                            let title = column.footer().textContent;
+                            // Create input element
+                            let input = document.createElement('input');
+                            input.placeholder = title;
+                            column.footer().replaceChildren(input);
+
+                            // Event listener for user input
+                            input.addEventListener('keyup', () => {
+                                if (column.search() !== this.value) {
+                                    column.search(input.value).draw();
+                                }
+                            });
+                        });
+                }
+            });
         }
 
         function configToCSV() {
